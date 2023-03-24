@@ -1,0 +1,111 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Text\**" />
+    <EmbeddedResource Remove="Text\**" />
+    <None Remove="Text\**" />
+    <Page Remove="Text\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\beer money.ttf" />
+    <None Remove="Fonts\DeterminationMonoWebRegular-Z5oq.ttf" />
+    <None Remove="Fonts\determinationrusbylyajka.otf" />
+    <None Remove="Fonts\DeterminationSansWebRegular-369X.ttf" />
+    <None Remove="Fonts\TkachenkoSketch4F-Bold.ttf" />
+    <None Remove="Fonts\TkachenkoSketch4F-Regular.ttf" />
+    <None Remove="Fonts\TMVinograd-Filled.ttf" />
+    <None Remove="Fonts\TMVinograd-FilledOblique.ttf" />
+    <None Remove="Fonts\Ustroke-Regular.ttf" />
+    <None Remove="Fonts\Zhizn.otf" />
+    <None Remove="Images\man_stand1.png" />
+    <None Remove="Images\man_stand2.png" />
+    <None Remove="Images\man_stand3.png" />
+    <None Remove="Images\nothing1.png" />
+    <None Remove="Images\nothing2.png" />
+    <None Remove="Images\nothing3.png" />
+    <None Remove="Images\phone1.png" />
+    <None Remove="Images\phone2.png" />
+    <None Remove="Images\phone3.png" />
+    <None Remove="Images\Screen1.png" />
+    <None Remove="Images\Screen2.png" />
+    <None Remove="Images\Screen3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\beer money.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\DeterminationMonoWebRegular-Z5oq.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\determinationrusbylyajka.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\DeterminationSansWebRegular-369X.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TkachenkoSketch4F-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TkachenkoSketch4F-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TMVinograd-Filled.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TMVinograd-FilledOblique.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ustroke-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Zhizn.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\man_stand1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\man_stand2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\man_stand3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nothing1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nothing2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nothing3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Screen1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Screen2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Screen3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
