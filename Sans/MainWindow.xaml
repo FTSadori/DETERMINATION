@@ -8,21 +8,167 @@
         Title="???" Height="750" Width="1000"
         KeyDown="Window_KeyDown">
     <Window.Resources>
-
+        <Style x:Key="DTText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Fonts/#Determination (RUS BY LYAJKA)"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="VinoDTText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Fonts/#TM Vinograd Filled"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
     </Window.Resources>
     <Grid Background="Black">
+        <TextBlock Name="LOG" Foreground="White" FontFamily="Fonts/#Determination (RUS BY LYAJKA)" 
+                   FontSize="30"
+                   Width="300" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+
+
+        <Grid Width="600" Height="300" Background="White" Name="UpgradeBubble" Visibility="Hidden" Panel.ZIndex="100">
+            <StackPanel Margin="10" Width="580" Height="280" Background="Black">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="140" Height="140" Background="White">
+                        <Image x:Name="CurrentUpgrade" Width="120" Height="120" Margin="10"/>
+                    </StackPanel>
+                    <TextBlock Style="{DynamicResource VinoDTText}" FontSize="60"
+                               Width="410" Name="CurrentUpgradeName"
+                               TextWrapping="Wrap">Real cool upgrade</TextBlock>
+                </StackPanel>
+                <TextBlock Style="{DynamicResource VinoDTText}" FontSize="40" Margin="10"
+                               Width="560" Name="CurrentUpgradeDesc"
+                               TextWrapping="Wrap">Real cool upgrade</TextBlock>
+            </StackPanel>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Style="{DynamicResource UTButtonStyle}" FontSize="30"
+                    Margin="20" Click="CloseUpgradeBubble_Click">Back</Button>
+        </Grid>
+
         <Button FontSize="100" Style="{DynamicResource UTButtonStyle}"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Name="StartButton"
                 Margin="0 0 0 50" Click="Start_Click">
             Старт</Button>
 
-        <Image x:Name="BG1" Stretch="Fill" Panel.ZIndex="-10" ></Image>
-        <Image x:Name="BG2" Stretch="Fill" Panel.ZIndex="-11" ></Image>
-        <Image x:Name="BG3" Stretch="Fill" Panel.ZIndex="-12" ></Image>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.18*"/>
+                <RowDefinition Height="0.30*"/>
+                <RowDefinition Height="0.20*"/>
+                <RowDefinition Height="1.20*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.9*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" FontSize="50" Visibility="Hidden"
+                       Style="{StaticResource VinoDTText}" Name="DTcounter" Foreground="LightGray"
+                       >0 Решимости</TextBlock>
+            <TextBlock Grid.Row="2" FontSize="32" Foreground="Gray"
+                       Style="{StaticResource VinoDTText}" Name="DTpscounter" Visibility="Hidden"
+                       >0 Решимости в секунду</TextBlock>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="Menu" Grid.Row="4">
+                <Button Style="{DynamicResource UTDTButtonStyle}" FontSize="60" FontFamily="Fonts/#TM Vinograd Filled" Click="MachineMenu_Click"
+                            Name="MachineMenu" Width="0">Машина</Button>
+                <Button Style="{DynamicResource UTDTButtonStyle}" FontSize="60" FontFamily="Fonts/#TM Vinograd Filled" Click="UpgradesMenu_Click"
+                            Name="UpgradesMenu" Width="0">Улучш.</Button>
+                <Button Style="{DynamicResource UTDTButtonStyle}" FontSize="60" FontFamily="Fonts/#TM Vinograd Filled" Click="ResetMenu_Click"
+                            Name="ResetMenu" Width="0">Сброс</Button>
+            </StackPanel>
+
+            <Grid Grid.Row="5">
+
+
+                <Grid Name="UpgradesGrid" Background="#4C1A1A1A" Visibility="Hidden">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="60"
+                                Background="#CC1A1A1A" Name="GoBackButton" Click="GoBackButton_Click">(</Button>
+                        <StackPanel Name="UpgradesStack" Width="886" Orientation="Horizontal">
+
+                        </StackPanel>
+                        <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="60" 
+                                Background="#CC1A1A1A" Name="GoNextButton" Click="GoNextButton_Click">)</Button>
+                    </StackPanel>
+                </Grid>
+                
+                <Grid Name="MachineGrid" Visibility="Hidden" Background="#4C1A1A1A">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Name="Machine1" Margin="10" Visibility="Visible">
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="60">
+                            Корпус 1
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine1Count">
+                            0 Улучшений
+                        </TextBlock>
+                        <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine1" FontSize="40" Click="BuyMachine1_Click">0 реш.</Button>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine1Power">
+                            P: 0 реш/с
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Name="Machine2" Margin="10" Grid.Column="1" Visibility="Hidden">
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="60">
+                            Корпус 2
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine2Count">
+                            0 Улучшений
+                        </TextBlock>
+                        <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine2" FontSize="40" Click="BuyMachine2_Click">0 реш.</Button>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine2Power">
+                            P: 0 реш/с
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Name="Machine3" Margin="10" Grid.Column="2" Visibility="Hidden">
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="60">
+                            Корпус 3
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine3Count">
+                            0 Улучшений
+                        </TextBlock>
+                        <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine3" FontSize="40" Click="BuyMachine3_Click">0 реш.</Button>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine3Power">
+                            P: 0 реш/с
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Name="Machine4" Margin="10" Grid.Column="3" Visibility="Hidden">
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="60">
+                            Корпус 4
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine4Count">
+                            0 улучшений
+                        </TextBlock>
+                        <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine4" FontSize="40" Click="BuyMachine4_Click">0 реш.</Button>
+                        <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine4Power">
+                            P: 0 реш/с
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <Image x:Name="BG1" Stretch="Fill" Panel.ZIndex="-10"></Image>
+        <Image x:Name="BG2" Stretch="Fill" Panel.ZIndex="-11"></Image>
+        <Image x:Name="BG3" Stretch="Fill" Panel.ZIndex="-12"></Image>
         <Image x:Name="CG1" Stretch="Fill" Panel.ZIndex="-5" ></Image>
         <Image x:Name="CG2" Stretch="Fill" Panel.ZIndex="-5" ></Image>
         <Image x:Name="CG3" Stretch="Fill" Panel.ZIndex="-5" ></Image>
+
+        <Button FontSize="90" Style="{DynamicResource UTDTButtonStyle}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Name="DTGain"
+                Margin="10 -50 0 00" Click="DT_Click" Visibility="Hidden">
+            DT</Button>
+
 
         <Grid VerticalAlignment="Top" Name="DTDialogBox"
             Height="210"

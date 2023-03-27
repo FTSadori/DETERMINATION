@@ -25,6 +25,15 @@
     <None Remove="Fonts\TMVinograd-FilledOblique.ttf" />
     <None Remove="Fonts\Ustroke-Regular.ttf" />
     <None Remove="Fonts\Zhizn.otf" />
+    <None Remove="Images\0pSoul1.png" />
+    <None Remove="Images\0pSoul2.png" />
+    <None Remove="Images\0pSoul3.png" />
+    <None Remove="Images\machine1.png" />
+    <None Remove="Images\machine2.png" />
+    <None Remove="Images\machine3.png" />
+    <None Remove="Images\MachineBG1.png" />
+    <None Remove="Images\MachineBG2.png" />
+    <None Remove="Images\MachineBG3.png" />
     <None Remove="Images\man_stand1.png" />
     <None Remove="Images\man_stand2.png" />
     <None Remove="Images\man_stand3.png" />
@@ -68,6 +77,33 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\Zhizn.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\0pSoul1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\0pSoul2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\0pSoul3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\machine1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\machine2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\machine3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MachineBG1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MachineBG2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MachineBG3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\man_stand1.png">
