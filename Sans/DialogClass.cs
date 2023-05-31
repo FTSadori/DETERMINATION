@@ -15,9 +15,50 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Runtime.CompilerServices;
 
 namespace Sans
 {
+    public enum Condition
+    {
+        Determination,
+        Resets,
+        AmalgametWins,
+    }
+
+    public class ConditionDialog
+    {
+        public ConditionDialog(Condition condition, double value, string dialogId, Endings endings = Endings.Pre)
+        {
+            Condition = condition;
+            Value = value;
+            DialogId = dialogId;
+            Ending = endings;
+        }
+
+        public Condition Condition { get; set; }
+        public double Value { get; set; }
+        public string DialogId { get; set; }
+        public Endings Ending { get; set; }
+
+        public bool CheckCondition()
+        {
+            if (Ending == Save.save.End || Ending == Endings.Any)
+            switch (Condition)
+            {
+                case Condition.Determination:
+                    return Save.save.DT >= Value;
+                case Condition.Resets:
+                    return Save.save.Resets >= Value;
+                case Condition.AmalgametWins:
+                    return Save.save.AmalgamWin >= Value;
+                default:
+                    return false;
+            }
+            else return false;
+        }
+    }
+
     public class DialogLine
     {
         public string Text { get; private set; } = "";
@@ -43,16 +84,21 @@ namespace Sans
         public DialogLine text;
         public int speed;
         public VerticalAlignment va;
+        public FontFamily ff;
 
-        public Dialog(string _text, int _speed = 50, VerticalAlignment _va = VerticalAlignment.Bottom)
+        public Dialog(string _text, FontFamily? _ff = null, int _speed = 50, VerticalAlignment _va = VerticalAlignment.Bottom)
         {
             text = new DialogLine(_text);
             speed = _speed;
             va = _va;
+            if (_ff == null)
+                ff = (FontFamily?)MainWindow.This?.TryFindResource("DefautFont") ?? new FontFamily();
+            else
+                ff = _ff;
         }
     }
 
-    internal class DialogClass
+    public class DialogClass
     {
         private TextBlock dtDialogText;
         private Grid dtDialogBox;
@@ -80,10 +126,15 @@ namespace Sans
                 {
                     var arr = line.Split('"');
                     var arr2 = line.Split(' ');
+                    string font = "DefaultFont";
+                    if (arr2[^1].Trim().Length == 2)
+                        if (arr2[^1].Trim()[1] == 's')
+                            font = "SansFont";
 
-                    AllDialogs[key].Add(new Dialog(arr[0], 
+                    AllDialogs[key].Add(new Dialog(arr[0],
+                        (FontFamily?)MainWindow.This?.TryFindResource(font) ?? new FontFamily(),
                         Convert.ToInt32(arr2[^2].Trim()),
-                        (arr2[^1].Trim() == "1") ? VerticalAlignment.Top : VerticalAlignment.Bottom
+                        (arr2[^1].Trim()[0] == '1') ? VerticalAlignment.Top : VerticalAlignment.Bottom
                     ));
                 }
             }
@@ -100,14 +151,17 @@ namespace Sans
 
         public void StartNewDialogs(List<Dialog> _dialogs, IDialogWindow owner, string key)
         {
-            dialogs.Clear();
-            dialogs.AddRange(_dialogs);
-            
-            dtDialogBox.Visibility = Visibility.Visible;
+            if (!InDialog)
+            {
+                dialogs.Clear();
+                dialogs.AddRange(_dialogs);
 
-            InDialog = true;
-            currentKey = key;
-            NextDialog(owner);
+                dtDialogBox.Visibility = Visibility.Visible;
+
+                InDialog = true;
+                currentKey = key;
+                NextDialog(owner);
+            }
         }
 
         public void StartNewDialogs(string key, IDialogWindow owner)
@@ -196,6 +250,7 @@ namespace Sans
         {
             dtDialogText.Text = "";
             dtDialogBox.VerticalAlignment = dialog.va;
+            dtDialogText.FontFamily = dialog.ff;
             dialog_toend = false;
 
             if (dialog_thread != null)

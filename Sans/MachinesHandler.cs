@@ -34,19 +34,19 @@ namespace Sans
             BasePrice = basePrice;
         }
     }
-    internal class MachinesHandler
+    public class MachinesHandler
     {
-        public List<Machine> Machines { get; private set; } = new List<Machine>();
+        public List<Machine> Machines { get; private set; } = new();
+        public List<Machine> TimeMachines { get; private set; } = new();
 
         private const double PriceRaiseCoef = 0.2;
 
         public void AddMachine(Machine newMachine) => Machines.Add(newMachine);
-        
-        public static double PriceFunction(double start, int x, double lvl)
-        {
-            return start * (Math.Pow(1.5 + lvl * PriceRaiseCoef, x) - 1.0);
-        }
+        public void AddTimeMachine(Machine newMachine) => TimeMachines.Add(newMachine);
 
+        public static double PriceFunction(double start, int x, double lvl, bool startFromZero = true)
+            => start * (Math.Pow(1.3 + lvl * PriceRaiseCoef, x) - (startFromZero ? 1.0 : 0.0));
+        
         public void ReloadMachine(int num)
         {
             Machine m = Machines[num];
@@ -58,16 +58,37 @@ namespace Sans
             m.Power.Text = $"P{num + 1}: "
                 + BigNumsConverter.GetInPrettyENotation(Save.save.MachineCount[num] * m.Multipicator, 999)
                 + ((num == 0) ? " реш/с" : $"P{num}");
+
+            MainWindow.dthandler?.ReloadDTPS(Machines);
+        }
+
+        public void ReloadTimeMachine(int num)
+        {
+            Machine m = TimeMachines[num];
+
+            m.BuyButton.Content = BigNumsConverter.GetInPrettyENotation(
+                PriceFunction(m.BasePrice, Save.save.TimeMachineCount[num], num, false)
+                ) + " ОС";
+            m.Count.Text = Save.save.TimeMachineCount[num] + " улучшений";
+            m.Power.Text = $"P{num + 1}: "
+                + BigNumsConverter.GetInPrettyENotation(Save.save.TimeMachinePowers[num] * TimeMachines[num].Multipicator, 999)
+                + ((num == 0) ? " тик/с" : $" КВ{num}/с");
+
+            MainWindow.dthandler?.ReloadDTPS(Machines);
         }
 
         public void ReloadMachines()
         {
             for (int i = 0; i < Machines.Count; ++i)
-            {
                 ReloadMachine(i);
-            }
         }
-        public void BuyMachine(int num)
+
+        public void ReloadTimeMachines()
+        {
+            for (int i = 0; i < TimeMachines.Count; ++i)
+                ReloadTimeMachine(i);
+        }
+        public void BuyMachine(int num, bool buyMax)
         {
             double price = Math.Round(PriceFunction(Machines[num].BasePrice, Save.save.MachineCount[num], num));
             if (DTHandler.IfEnough(price) && price < BigNumsConverter.Infinity)
@@ -76,6 +97,24 @@ namespace Sans
                 ++Save.save.MachineCount[num];
                 ReloadMachine(num);
                 MainWindow.dthandler?.ReloadDTPS(Machines);
+            
+                if (buyMax) BuyMachine(num, buyMax);
+            }
+        }
+
+        public void BuyTimeMachine(int num, bool buyMax)
+        {
+            double price = Math.Round(PriceFunction(TimeMachines[num].BasePrice, Save.save.TimeMachineCount[num], num, false));
+            if (RPHandler.IfEnough(price) && price < BigNumsConverter.Infinity)
+            {
+                MainWindow.rphandler?.ChangeRP(-price);
+                ++Save.save.TimeMachineCount[num];
+                ++Save.save.TimeMachinePowers[num];
+                ReloadTimeMachine(num);
+                MainWindow.dthandler?.ReloadDTPS(Machines);
+                MainWindow.tickhandler?.ReloadCounter();
+
+                if (buyMax) BuyTimeMachine(num, buyMax);
             }
         }
     }
