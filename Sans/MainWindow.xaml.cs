@@ -18,9 +18,26 @@ using System.Text.Json;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.Windows.Resources;
+using System.Diagnostics.PerformanceData;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sans
 {
+    public class ManualPage
+    {
+        public string Label = "";
+        public string Text = "";
+
+        public ManualPage(string text, string label = "")
+        {
+            Text = text;
+            Label = label;
+        }
+    }
+    interface ICloseableView
+    {
+        void Close(bool confirm);
+    }
 
     public interface IDialogWindow
     {
@@ -29,7 +46,7 @@ namespace Sans
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IDialogWindow
+    public partial class MainWindow : Window, IDialogWindow, ICloseableView
     {
         public static MainWindow? This;
 
@@ -47,7 +64,15 @@ namespace Sans
         public static RPHandler? rphandler;
         public static TickHandler? tickhandler;
 
+        Thread? manualNotifThread;
+        Thread? checkForLimit;
+
+        RoutedEventHandler LastBuyDelegate = null;
+
         bool UseMaxBuy = false;
+
+        double UIScale = 1.0;
+        double UIScaleFullscreen = 1.15;
 
         public static void DoCmd(ThreadStart th)
         {
@@ -56,16 +81,13 @@ namespace Sans
 
         public DialogClass dialogClass;
 
-        public bool canLookAtRoom = false;
+        public bool canLookAtRoom = true;
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
             This = this;
-
-            //this.Width = 1000;
-            //this.Height = 750;
 
             dialogClass = new(DTDialogBoxText, DTDialogBox);
             dthandler = new(DTcounter, DTpscounter);
@@ -124,11 +146,80 @@ namespace Sans
             if (Save.DoLoad())
             {
                 StartButton.Visibility = Visibility.Hidden;
+            
+                rphandler?.ReloadPRGainCounter();
                 CheckStart();
                 machinesHandler.ReloadMachines();
                 machinesHandler.ReloadTimeMachines();
+
+                if (Save.save.OnLimit)
+                    DTcounter.Text = "Предел реш.";
             }
             dthandler?.ReloadDTPS(machinesHandler.Machines);
+
+            ReadManualFile();
+
+            RefreshManual();
+
+            manualNotifThread = new(delegate ()
+            {
+                while (true)
+                {
+                    if (Save.save.ManualPagesReadedMax < manualPages.Count - 1)
+                    {
+                        DoCmd(delegate ()
+                        {
+                            InfoButton.Opacity = 1.0;
+                            if (InfoButton.Background == Brushes.Transparent)
+                            {
+                                NextPageButton.Background = Brushes.DarkRed;
+                                InfoButton.Background = Brushes.DarkRed;
+                            }
+                            else
+                            {
+                                NextPageButton.Background = Brushes.Transparent;
+                                InfoButton.Background = Brushes.Transparent;
+                            }
+                        });
+                    }
+                    else
+                        DoCmd(delegate () {
+                            NextPageButton.Background = Brushes.Transparent;
+                            InfoButton.Background = Brushes.Transparent;
+                            InfoButton.Opacity = 0.5;
+                        });
+
+                    Thread.Sleep(500);
+                }
+            });
+            manualNotifThread.Start();
+            manualNotifThread.IsBackground = true;
+
+            checkForLimit = new(delegate ()
+            {
+                List<double> limits = new() { 1e6, 1e10, 1e15, 1e20, 1e25, 1e40 };
+
+                while (true)
+                {
+                    Thread.Sleep(500);
+                    for (int i = 0; i < limits.Count; i++)
+                    {
+                        if (Save.save.LimitLvl == i && Save.save.DT > limits[i])
+                        {
+                            DoCmd(delegate () {
+                                Save.save.TryAddPages(new() { 10, 11 });
+                                ++Save.save.LimitLvl;
+                                Save.save.OnLimit = true;
+                                DTcounter.Text = "Лимит реш.";
+                            });
+                        }
+                    }
+                }
+            });
+            checkForLimit.Start();
+            checkForLimit.IsBackground = true;
+
+            SetUIScale(UIScale = Save.save.UIScale);
 
             CheckRiverMan();
 
@@ -176,7 +267,7 @@ namespace Sans
                             room256.LastBattle();
                             room256.ShowDialog();
                         }
-                        Close();
+                        Close(false);
                     });
                 });
                 lastBattle.Start();
@@ -185,6 +276,41 @@ namespace Sans
         }
 
         Thread? lastBattle;
+
+        List<ManualPage> allManualPages = new();
+        List<ManualPage> manualPages = new();
+        int currentManualPage = 0;
+
+        public void RefreshManual()
+        {
+            manualPages.Clear();
+
+            foreach (int num in Save.save.ManualPagesAvailable) {
+                manualPages.Add(allManualPages[num]);
+            }
+        }
+
+        private void ReadManualFile()
+        {
+            Stream resourceStream = Application.GetResourceStream(new Uri($"pack://application:,,,/Text/Manual.txt")).Stream;
+
+            using StreamReader reader = new(resourceStream);
+            var lines = reader.ReadToEnd().Split("\n");
+            foreach (var line in lines)
+            {
+                var newline = line.Replace("\\n", "\n");
+
+                if (newline.StartsWith("$"))
+                    allManualPages.Add(new ManualPage("", newline.Substring(1)));
+                else
+                {
+                    if (allManualPages[^1].Text == "")
+                        allManualPages[^1].Text = newline ?? " ";
+                    else
+                        allManualPages.Add(new ManualPage(newline ?? " "));
+                }
+            }
+        }
 
         public void CheckRiverMan()
         {
@@ -251,7 +377,7 @@ namespace Sans
                 .OrderBy(u => u.Price)
                 .ToList());
 
-            if (num > openedUpgrades.Count / 5 || num < 0) return;
+            if (num > (openedUpgrades.Count - 1) / 5 || num < 0) return;
             currentUpgradePage = num;
 
             UpgradesStack.Children.Clear();
@@ -283,6 +409,7 @@ namespace Sans
                 MachineMenu.Width = menuTabsSize;
                 UpgradesMenu.Width = menuTabsSize;
                 MachineGrid.Visibility = Visibility.Visible;
+                InfoButton.Visibility = Visibility.Visible;
 
                 ReloadMachineTab();
 
@@ -335,7 +462,13 @@ namespace Sans
             }
             else
             {
-                BeginNewDialog("_run_away0", 0);
+                if (Save.save.RanAway)
+                {
+                    Save.save.RanAway = false;
+                    ResetButton_Click(new(), new());
+                }
+                else
+                    BeginNewDialog("_run_away0", 0);
             }
 
             SetStartScreen();
@@ -367,6 +500,9 @@ namespace Sans
                     BeginNewDialog("_start_tutorial4", 1000);
                     Save.save.InTutorial = false;
                     Save.save.TutorialPassed = true;
+                    break;
+                case "_start_tutorial4":
+                    InfoButton.Visibility = Visibility.Visible; 
                     break;
                 case "_idling_1":
                 case "_idling_2":
@@ -492,7 +628,7 @@ namespace Sans
                     break;
                 case "_end_n1":
                     File.Delete("Saves/s0.txt");
-                    Close();
+                    Close(false);
                     break;
                 case "_6.6e66_i1":
                     BeginNewDialog("_6.6e66_i2", 100);
@@ -514,7 +650,7 @@ namespace Sans
                     break;
                 case "_end_i3":
                     File.Delete("Saves/s0.txt");
-                    Close();
+                    Close(false);
                     break;
                 case "_he_notice":
                     BeginNewDialog("_he_notice2", 100);
@@ -534,6 +670,8 @@ namespace Sans
 
         public void Gaster()
         {
+            MessageBox.Show("Будь осторожен", "????", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
             AmalgametHandler.IsActive = false;
             UltraBlackScreen.Visibility = Visibility.Visible;
             Room256 room256 = new();
@@ -606,13 +744,14 @@ namespace Sans
                     });
                     break;
                 case "_idling_end":
+                    Save.save.RanAway = true;
                     SetOnBlackAnimation("Death");
                     gameClosingThread = new Thread(delegate () {
                         Thread.Sleep(500);
                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                         (ThreadStart)delegate ()
                         {
-                            Close();
+                            Close(false);
                         });
                     });
                     gameClosingThread.Start();
@@ -685,6 +824,11 @@ namespace Sans
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("Chung");
                     break;
+                case "_6.6e66_n1":
+                case "_6.6e66_i1":
+                case "_he_notice":
+                    confirmClosing = true;
+                    break;
                 case "_6.6e66_n2":
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("nothing");
@@ -716,6 +860,8 @@ namespace Sans
                     break;
                 case "_6.6e66_i4":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    Save.save.OpenedUpgrades["Все счастливы"] = UpgradeMode.Opened;
+                    ReloadCurrentUpgradePage();
                     break;
                 case "_you_cant":
                     BlackScreen.Visibility = Visibility.Visible;
@@ -744,6 +890,11 @@ namespace Sans
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            if (Room256.amHandler != null && Room256.amHandler.AmalgamPlace != 0)
+            {
+                Save.save.RanAway = true;
+                Save.DoSave(LOG);
+            }
             Environment.Exit(Environment.ExitCode);
         }
 
@@ -848,20 +999,47 @@ namespace Sans
 
         private void DT_Click(object sender, RoutedEventArgs e)
         {
+            if (Save.save.End == Endings.Save)
+            {
+                BeginNewDialog("_i_refuse", 0);
+                return;
+            }
+
             Save.save.Clicks += Convert.ToInt32(1 * Math.Max(1.0, EXPBoost));
+            Save.save.MaxClicks = Math.Max(Save.save.MaxClicks, Save.save.Clicks);
             dthandler?.ChangeDT(CountDTPerClick());
 
             if (Save.save.LastDialog == "_start_tutorial1" && Save.save.CurDialog != "_start_tutorial2")
             {
                 BeginNewDialog("_start_tutorial2", 10);
             }
-
         }
+
+        private void Fullscreen()
+        {
+            if (WindowStyle == WindowStyle.SingleBorderWindow)
+            {
+                SizeToContent = SizeToContent.Manual;
+                WindowStyle = WindowStyle.None;
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Normal;
+                SizeToContent = SizeToContent.WidthAndHeight;
+            }
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.LeftShift)
             {
                 UseMaxBuy = true;
+            }
+            if (e.Key == Key.F4)
+            {
+                Fullscreen();
             }
             if (dialogClass.InDialog)
             {
@@ -924,21 +1102,7 @@ namespace Sans
 
         public StackPanel ToStackPanel(Upgrade upgrade)
         {
-            StackPanel panel = new();
-            Image image = new();
-            Button buybutton = new();
-            Button closerbutton = new();
-
-            panel.Width = 178.0;
-
-            image.Height = 100.0;
-            image.Width = 100.0;
-            image.Source = new BitmapImage(new Uri($"pack://application:,,,/Upgrades/u_{upgrade.GetIconName()}.png"));
-
-            buybutton.Style = (Style)this.TryFindResource("UTDTButtonStyle");
-            buybutton.FontSize = 30;
-            buybutton.Content = BigNumsConverter.GetInPrettyENotation(upgrade.Price, 1000) + " реш.";
-            buybutton.Click += delegate (object sender, RoutedEventArgs e)
+            RoutedEventHandler buyDelegate = delegate (object sender, RoutedEventArgs e)
             {
                 if (upgrade.GetIconName() == "goodending")
                 {
@@ -955,21 +1119,53 @@ namespace Sans
 
                     ReloadCurrentUpgradePage();
                 }
+
+                UpgradeBubble.Visibility = Visibility.Hidden;
             };
 
-            closerbutton.Style = (Style)this.TryFindResource("UTDTButtonStyle");
-            closerbutton.FontSize = 30;
-            closerbutton.Content = "...";
-            closerbutton.Click += delegate (object sender, RoutedEventArgs e)
+            StackPanel panel = new();
+            Grid grid = new();
+            Image image = new();
+            Button buybutton = new();
+            TextBlock closerbutton = new();
+            Button newcloserbutton = new();
+
+            panel.Width = 178.0 * UIScale;
+            
+            grid.Height = 100.0 * UIScale;
+            grid.Width = 100.0 * UIScale;
+            image.Stretch = Stretch.Fill;
+            image.Source = new BitmapImage(new Uri($"pack://application:,,,/Upgrades/u_{upgrade.GetIconName()}.png"));
+
+            newcloserbutton.Style = (Style)this.TryFindResource("UpgradeClose");
+            newcloserbutton.Click += delegate (object sender, RoutedEventArgs e)
             {
                 UpgradeBubble.Visibility = Visibility.Visible;
                 CurrentUpgradeDesc.Text = upgrade.GetDescription();
                 CurrentUpgradeName.Text = upgrade.GetUpgradeName();
                 CurrentUpgrade.Source = image.Source;
+
+                if (LastBuyDelegate != null)
+                    BuyUpgradeBubble.Click -= LastBuyDelegate;
+                BuyUpgradeBubble.Click += buyDelegate;
+                BuyUpgradeBubble.Content = $"Купить ({BigNumsConverter.GetInPrettyENotation(upgrade.Price)} реш.)";
+                LastBuyDelegate = buyDelegate;
             };
 
+            grid.Children.Add(image);
+            grid.Children.Add(newcloserbutton);
+            
+            buybutton.Style = (Style)this.TryFindResource("UTDTButtonStyle");
+            buybutton.FontSize = 30 * UIScale;
+            buybutton.Content = BigNumsConverter.GetInPrettyENotation(upgrade.Price, 1000) + " реш.";
+            buybutton.Click += buyDelegate;
+            
+            closerbutton.Style = (Style)this.TryFindResource("VinoDTText");
+            closerbutton.FontSize = 30 * UIScale;
+            closerbutton.Text = "...";
+
             panel.Children.Add(closerbutton);
-            panel.Children.Add(image);
+            panel.Children.Add(grid);
             panel.Children.Add(buybutton);
 
             return panel;
@@ -1062,8 +1258,47 @@ namespace Sans
             PercentDTPower = 0;
             AmalgametHandler.AvgSpawnTime = 5 * 60 * 1000;
             DMG = 1;
+            Save.save.Clicks = 0;
+
+            Save.save.TryAddPages(new() { 8, 9 });
 
             dthandler?.Reset();
+
+            if (Save.save.OnLimit)
+            {
+                switch (Save.save.LimitLvl)
+                {
+                    case 1:
+                        BeginNewDialog("_reset_black", 0);
+                        break;
+                    case 2:
+                        BeginNewDialog("_time1", 0);
+                        break;
+                    case 3:
+                        BeginNewDialog("_dream_start2", 0);
+                        break;
+                    case 4:
+                        BeginNewDialog("_time2", 0);
+                        break;
+                    case 5:
+                        if (Save.save.End == Endings.Save)
+                            BeginNewDialog("_dream_start3s", 0);
+                        if (Save.save.End == Endings.Insane)
+                            BeginNewDialog("_dream_start3i", 0);
+                        if (Save.save.End == Endings.Neutral)
+                            BeginNewDialog("_dream_start3n", 0);
+                        break;
+                    case 6:
+                        if (Save.save.End == Endings.Save)
+                            BeginNewDialog("_dream_start4s", 0);
+                        if (Save.save.End == Endings.Insane)
+                            BeginNewDialog("_dream_start4i", 0);
+                        if (Save.save.End == Endings.Neutral)
+                            BeginNewDialog("_dream_start4n", 0);
+                        break;
+                }
+                Save.save.OnLimit = false;
+            }
 
             MachineMenu_Click(new object(), new RoutedEventArgs());
             SetStartScreen();
@@ -1088,7 +1323,7 @@ namespace Sans
                 sw.WriteLine("| Санс                  |");
                 sw.WriteLine("+-----------------------+");
                 sw.WriteLine("| УР : {0,-6}           |", GetLvlByExp(Save.save.Clicks));
-                sw.WriteLine("| ОЗ : {0,-6}           |", (Save.save.HP > 999999) ? Double.PositiveInfinity : Save.save.HP);
+                sw.WriteLine("| ОЗ : {0,-6}           |", 1);
                 sw.WriteLine("| СИЛ: {0,-6}           |", (Save.save.Strengh > 999999) ? Double.PositiveInfinity : DMG);
                 sw.WriteLine("| ОП : {0,-6}           |", (Save.save.Clicks > 999999) ? Double.PositiveInfinity : Save.save.Clicks);
                 sw.WriteLine("| РЕШ: {0,-7}          |", BigNumsConverter.GetInPrettyENotation(Save.save.TotalDT));
@@ -1138,6 +1373,314 @@ namespace Sans
         private void DTGain_MouseUp(object sender, MouseButtonEventArgs e)
         {
             DTButtonImage.Source = new BitmapImage(new Uri($"pack://application:,,,/Images/DT2.png"));
+        }
+
+        private void SetTextScale(double scale)
+        {
+            scale -= 0.15;
+
+            const double DTDialogBoxTextSize = 35;
+            const double RPcounterSize = 26;
+            const double DTcounterSize = 45;
+            const double TpscounterSize = 26;
+            const double TickcounterSize = 17;
+
+            const double GoBackButtonSize = 50;
+            const double GoNextButtonSize = 50;
+            const double UIlessSize = 20;
+            const double UIbiggerSize = 20;
+            const double FullscreenButtonSize = 20;
+            const double ScalePercentSize = 25;
+
+            const double ResetMenuSize = 50;
+            const double RoomSize = 50;
+            const double StatSize = 50;
+            const double SettingsButtonSize = 50;
+            const double MachineMenuSize = 50;
+            const double UpgradesMenuSize = 50;
+            const double TimeMachineMenuSize = 50;
+
+            const double SettingsTitleSize = 50;
+            const double UISizeTextSize = 30;
+            const double OnFullscreenTextSize = 30;
+            const double CloseSettingsButtonSize = 45;
+            const double CurrentUpgradeNameSize = 40;
+            const double CurrentUpgradeDescSize = 30;
+            const double CloseUpgradeBubbleSize = 35;
+            const double BuyUpgradeBubbleSize = 35;
+            const double LOGSize = 30;
+
+            DTDialogBoxText.FontSize = scale * DTDialogBoxTextSize;
+            RPcounter.FontSize = scale * RPcounterSize;
+            DTcounter.FontSize = scale * DTcounterSize;
+            DTpscounter.FontSize = scale * TpscounterSize;
+            Tickcounter.FontSize = scale * TickcounterSize;
+
+            GoBackButton.FontSize = scale * GoBackButtonSize;
+            GoNextButton.FontSize = scale * GoNextButtonSize;
+            UIless.FontSize = scale * UIlessSize;
+            UIbigger.FontSize = scale * UIbiggerSize;
+            FullscreenButton.FontSize = scale * FullscreenButtonSize;
+            ScalePercent.FontSize = scale * ScalePercentSize;
+
+            ResetMenu.FontSize = scale * ResetMenuSize;
+            Room.FontSize = scale * RoomSize;
+            Stat.FontSize = scale * StatSize;
+            SettingsButton.FontSize = scale * SettingsButtonSize;
+            MachineMenu.FontSize = scale * MachineMenuSize;
+            UpgradesMenu.FontSize = scale * UpgradesMenuSize;
+            TimeMachineMenu.FontSize = scale * TimeMachineMenuSize;
+
+            InfoButton.FontSize = SettingsTitle.FontSize = scale * SettingsTitleSize;
+            UISizeText.FontSize = scale * UISizeTextSize;
+            OnFullscreenText.FontSize = scale * OnFullscreenTextSize;
+            CloseSettingsButton.FontSize = scale * CloseSettingsButtonSize;
+            CurrentUpgradeName.FontSize = scale * CurrentUpgradeNameSize;
+            CurrentUpgradeDesc.FontSize = scale * CurrentUpgradeDescSize;
+            CloseUpgradeBubble.FontSize = scale * CloseUpgradeBubbleSize;
+            BuyUpgradeBubble.FontSize = scale * BuyUpgradeBubbleSize;
+            LOG.FontSize = scale * LOGSize;
+
+            const double Machine1Size = 50;
+            const double Machine2Size = 25;
+            const double Machine3Size = 40;
+            const double Machine4Size = 30;
+
+            const double TimeMachine1Size = 45;
+            const double TimeMachine2Size = 25;
+            const double TimeMachine3Size = 40;
+            const double TimeMachine4Size = 30;
+
+            Machine1Name.FontSize = Machine2Name.FontSize 
+                = Machine3Name.FontSize = Machine4Name.FontSize = Machine1Size * scale;
+            Machine1Count.FontSize = Machine2Count.FontSize 
+                = Machine3Count.FontSize = Machine4Count.FontSize = Machine2Size * scale;
+            BuyMachine1.FontSize = BuyMachine2.FontSize 
+                = BuyMachine3.FontSize = BuyMachine4.FontSize = Machine3Size * scale;
+            Machine1Power.FontSize = Machine2Power.FontSize 
+                = Machine3Power.FontSize = Machine4Power.FontSize = Machine4Size * scale;
+
+            TimeMachine1Name.FontSize = TimeMachine2Name.FontSize
+                = TimeMachine3Name.FontSize = TimeMachine4Name.FontSize = TimeMachine1Size * scale;
+            TimeMachine1Count.FontSize = TimeMachine2Count.FontSize 
+                = TimeMachine3Count.FontSize = TimeMachine4Count.FontSize = TimeMachine2Size * scale;
+            BuyTimeMachine1.FontSize = BuyTimeMachine2.FontSize 
+                = BuyTimeMachine3.FontSize = BuyTimeMachine4.FontSize = TimeMachine3Size * scale;
+            TimeMachine1Power.FontSize = TimeMachine2Power.FontSize 
+                = TimeMachine3Power.FontSize = TimeMachine4Power.FontSize = TimeMachine4Size * scale;
+
+            const double PageButtonFont = 35;
+            const double LabelPageFont = 39;
+            const double TextPageFont = 28;
+            const double PageNumFont = 35;
+            const double CloseManualButtonFont = 35;
+
+            NextPageButton.FontSize = PrevPageButton.FontSize = PageButtonFont * scale;
+            LabelPage1.FontSize = LabelPage2.FontSize = LabelPageFont * scale;
+            PageNum1.FontSize = PageNum2.FontSize = PageNumFont * scale;
+            TextPage1.FontSize = TextPage2.FontSize = TextPageFont * scale;
+            CloseManualButton.FontSize = CloseManualButtonFont * scale;
+
+            const double SaveSettingsTextFont = 30;
+            const double SaveButtonFont = 25;
+            const double DeleteSaveButtonFont = 25;
+            const double ExitGameButtonFont = 30;
+
+            SaveSettingsText.FontSize = SaveSettingsTextFont * scale;
+            SaveButton.FontSize = SaveButtonFont * scale;
+            DeleteSaveButton.FontSize = DeleteSaveButtonFont * scale;
+            ExitGameButton.FontSize = ExitGameButtonFont * scale;
+        }
+
+        private void SetMarginScale(FrameworkElement obj, Thickness baseMargin, double scale)
+        {
+            Thickness newMargin = new(baseMargin.Left * scale, baseMargin.Top * scale, 
+                baseMargin.Right * scale, baseMargin.Bottom * scale);
+            obj.Margin = newMargin;
+        }
+
+        private void SetUIScale(double scale)
+        {
+            Save.save.UIScale = scale;
+
+            SetTextScale(scale);
+            ScalePercent.Text = Convert.ToInt32(scale * 100.0).ToString() + "%";
+
+            //const double ReallyMainGridHeight = 750;
+            const double ReallyMainGridWidth = 1000;
+
+            const double UpgradeBubbleHeight = 300;
+            const double UpgradeBubbleWidth = 600;
+
+            const double UpgradeBubbleStackSize = 140;
+            const double CurrentUpgradeNameWidth = 410;
+
+            const double SettingsBubbleHeight = 530;
+            const double SettingsBubbleWidth = 600;
+            const double DTDialogBoxHeight = 210;
+            const double DTDialogBoxWidth = 750;
+            const double ResetButtonBackHeight = 150;
+            const double ResetButtonBackWidth = 300;
+
+            const double DTButtonHeight = 110;
+            const double DTButtonWidth = 170;
+
+            //ReallyMainGrid.Height = ReallyMainGridHeight * scale;
+            ReallyMainGrid.Width = ReallyMainGridWidth * scale;
+            UpgradeBubble.Height = UpgradeBubbleHeight * scale;
+            UpgradeBubble.Width = UpgradeBubbleWidth * scale;
+            UpgradeBubbleStack.Height = UpgradeBubbleStack.Width = UpgradeBubbleStackSize * scale;
+            CurrentUpgradeName.Width = CurrentUpgradeNameWidth * scale;
+            SettingsBubble.Height = SettingsBubbleHeight * scale;
+            SettingsBubble.Width = SettingsBubbleWidth * scale;
+            DTDialogBox.Height = DTDialogBoxHeight * scale;
+            DTDialogBox.Width = DTDialogBoxWidth * scale;
+            ResetButtonBack.Height = ResetButtonBackHeight * scale;
+            ResetButtonBack.Width = ResetButtonBackWidth * scale;
+            
+            DTGain.Height = DTButtonHeight * scale;
+            DTGain.Width = DTButtonWidth * scale;
+
+            const double TimeGridScalableWidth = 1000;
+
+            TimeGridScalable.Width = TimeGridScalableWidth * scale;
+
+            const double ManualPagesWidth = 800;
+            const double ManualPagesHeight = 500;
+
+            const double PageGridWidth = 360;
+            const double PageGridHeight = 480;
+
+            ManualPages.Width = ManualPagesWidth * scale;
+            ManualPages.Height = ManualPagesHeight * scale;
+
+            LeftPageGrid.Width = RightPageGrid.Width = PageGridWidth * scale;
+            LeftPageGrid.Height = RightPageGrid.Height = PageGridHeight * scale;
+            SetMarginScale(LeftPageGrid, new(10, 0, 0, 0), scale);
+            SetMarginScale(RightPageGrid, new(0, 0, 10, 0), scale);
+            SetMarginScale(UpgradesStack, new(50, 0, 50, 0), scale);
+            
+
+            ReloadCurrentUpgradePage();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsBubble.Visibility = Visibility.Visible;
+            SetUIScale(UIScale);
+            DarkerScreen.Visibility = Visibility.Visible;
+        }
+
+        private void ShowManualPage(int num)
+        {
+            if (manualPages.Count == 0) return;
+
+            if (num < 0) currentManualPage = 0;
+            else if (num >= manualPages.Count) currentManualPage = manualPages.Count - 2;
+            else currentManualPage = num;
+
+            PageNum1.Text = (currentManualPage + 1).ToString();
+            LabelPage1.Text = manualPages[currentManualPage].Label;
+            TextPage1.Text = manualPages[currentManualPage].Text;
+            
+            PageNum2.Text = (currentManualPage + 2).ToString();
+            LabelPage2.Text = manualPages[currentManualPage + 1].Label;
+            TextPage2.Text = manualPages[currentManualPage + 1].Text;
+
+            Save.save.ManualPagesReadedMax = Math.Max(Save.save.ManualPagesReadedMax, currentManualPage + 1);
+        }
+
+        private void UIless_Click(object sender, RoutedEventArgs e)
+        {
+            if (UIScale > 0.51) UIScale -= 0.05;
+            SetUIScale(UIScale);
+        }
+
+        private void UIbigger_Click(object sender, RoutedEventArgs e)
+        {
+            if (UIScale < 1.99) UIScale += 0.05;
+            SetUIScale(UIScale);
+        }
+
+        private void CloseSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsBubble.Visibility = Visibility.Hidden;
+            DarkerScreen.Visibility = Visibility.Hidden;
+        }
+
+        private void FullscreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            Fullscreen();
+            if (FullscreenButton.Content.ToString() == "выкл")
+                FullscreenButton.Content = "вкл";
+            else
+                FullscreenButton.Content = "выкл";
+        }
+
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManualGrid.Visibility = Visibility.Visible;
+            ShowManualPage(currentManualPage);
+            DarkerScreen.Visibility = Visibility.Visible;
+        }
+
+        private void CloseManualButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManualGrid.Visibility = Visibility.Hidden;
+            DarkerScreen.Visibility = Visibility.Hidden;
+        }
+
+        private void PrevPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowManualPage(currentManualPage - 2);
+        }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowManualPage(currentManualPage + 2);
+        }
+
+        private bool confirmClosing = false;
+        public void Close(bool confirm)
+        {
+            confirmClosing = confirm;
+            Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!confirmClosing)
+                e.Cancel = false;
+            else
+            {
+                var ans = MessageBox.Show("Всё закончится так?", "????", MessageBoxButton.YesNo);
+                if (ans == MessageBoxResult.No)
+                    e.Cancel = true;
+                else
+                    File.Delete("Saves/s0.txt");
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Save.DoSave(LOG);
+        }
+
+        private void DeleteSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ans = MessageBox.Show("Удалить сохранение?", "????", MessageBoxButton.YesNo);
+            if (ans == MessageBoxResult.Yes)
+            {
+                File.Delete("Saves/s0.txt");
+                Close(false);
+            }
+        }
+
+        private void ExitGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!confirmClosing)
+                Save.DoSave(LOG);
+            Close(confirmClosing);
         }
     }
 }

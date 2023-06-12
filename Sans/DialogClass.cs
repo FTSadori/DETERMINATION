@@ -47,7 +47,7 @@ namespace Sans
             switch (Condition)
             {
                 case Condition.Determination:
-                    return Save.save.DT >= Value;
+                    return Save.save.TotalDT >= Value;
                 case Condition.Resets:
                     return Save.save.Resets >= Value;
                 case Condition.AmalgametWins:
