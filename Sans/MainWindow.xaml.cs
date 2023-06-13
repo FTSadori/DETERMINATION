@@ -154,6 +154,9 @@ namespace Sans
 
                 if (Save.save.OnLimit)
                     DTcounter.Text = "Предел реш.";
+
+                CheckIfMachinesAreFull();
+
             }
             dthandler?.ReloadDTPS(machinesHandler.Machines);
 
@@ -280,6 +283,19 @@ namespace Sans
         List<ManualPage> allManualPages = new();
         List<ManualPage> manualPages = new();
         int currentManualPage = 0;
+
+        public void CheckIfMachinesAreFull()
+        {
+            if (Save.save.MachinesFull[0]) Machine1Name.Foreground = Brushes.Yellow;
+            if (Save.save.MachinesFull[1]) Machine2Name.Foreground = Brushes.Yellow;
+            if (Save.save.MachinesFull[2]) Machine3Name.Foreground = Brushes.Yellow;
+            if (Save.save.MachinesFull[3]) Machine4Name.Foreground = Brushes.Yellow;
+
+            if (Save.save.TimeMachinesFull[0]) TimeMachine1Name.Foreground = Brushes.DarkOrange;
+            if (Save.save.TimeMachinesFull[1]) TimeMachine2Name.Foreground = Brushes.DarkOrange;
+            if (Save.save.TimeMachinesFull[2]) TimeMachine3Name.Foreground = Brushes.DarkOrange;
+            if (Save.save.TimeMachinesFull[3]) TimeMachine4Name.Foreground = Brushes.DarkOrange;
+        }
 
         public void RefreshManual()
         {
@@ -1093,8 +1109,7 @@ namespace Sans
             PercentDTPower += upgrade.AddPercentOfDT;
             DMG += upgrade.DamageUpgrade;
 
-            AmalgametHandler.AvgSpawnTime = Convert.ToInt32(AmalgametHandler.AvgSpawnTime * upgrade.AmalgametSpawnTimeMult);
-            // todo
+            AmalgametHandler.AmalgametTimeIncreaser *= upgrade.AmalgametSpawnTimeMult;
         }
 
         int EXPBoost = 1;
@@ -1256,13 +1271,22 @@ namespace Sans
             rphandler.RPGainMultiplier = 1.0;
             tickhandler.TimeSpeed = 1.0;
             PercentDTPower = 0;
-            AmalgametHandler.AvgSpawnTime = 5 * 60 * 1000;
+
+            AmalgametHandler.AmalgametTimeIncreaser = 1.0;
             DMG = 1;
             Save.save.Clicks = 0;
 
             Save.save.TryAddPages(new() { 8, 9 });
 
             dthandler?.Reset();
+            Room256.amHandler?.Reset();
+
+            Machine1Name.Foreground = Brushes.White;
+            Machine2Name.Foreground = Brushes.White;
+            Machine3Name.Foreground = Brushes.White;
+            Machine4Name.Foreground = Brushes.White;
+
+            Save.save.MachinesFull = new List<bool>() { false, false, false, false };
 
             if (Save.save.OnLimit)
             {
@@ -1490,6 +1514,11 @@ namespace Sans
             SaveButton.FontSize = SaveButtonFont * scale;
             DeleteSaveButton.FontSize = DeleteSaveButtonFont * scale;
             ExitGameButton.FontSize = ExitGameButtonFont * scale;
+
+            const double BuyMaxUpgradesFont = 30;
+
+            BuyMaxUpgrades.FontSize = BuyMaxUpgradesFont * scale;
+            SetMarginScale(BuyMaxUpgrades, new(0, 0, 0, 5), scale);
         }
 
         private void SetMarginScale(FrameworkElement obj, Thickness baseMargin, double scale)
@@ -1681,6 +1710,30 @@ namespace Sans
             if (!confirmClosing)
                 Save.DoSave(LOG);
             Close(confirmClosing);
+        }
+
+        private void BuyMaxUpgrades_Click(object sender, RoutedEventArgs e)
+        {
+            var openedUpgradesNames = Save.save.OpenedUpgrades.Where(p => p.Value == UpgradeMode.Opened)
+                .ToDictionary(x => x.Key, x => x.Value);
+            List<Upgrade> openedUpgrades = new();
+            openedUpgrades
+                .AddRange(Upgrades.UpgradesList.Where(u => openedUpgradesNames.ContainsKey(u.GetUpgradeName()))
+                .OrderBy(u => u.Price)
+                .ToList());
+
+            foreach (var upgrade in openedUpgrades)
+            {
+                if (DTHandler.IfEnough(upgrade.Price))
+                {
+                    dthandler?.ChangeDT(-upgrade.Price);
+
+                    Save.save.OpenedUpgrades[upgrade.GetUpgradeName()] = UpgradeMode.Bought;
+                    UseUpgrade(upgrade);
+
+                    ReloadCurrentUpgradePage();
+                }
+            }
         }
     }
 }

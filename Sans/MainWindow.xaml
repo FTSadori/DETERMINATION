@@ -223,6 +223,9 @@
                         <StackPanel Name="UpgradesStack" Orientation="Horizontal" HorizontalAlignment="Left" Margin="50 0 50 0">
 
                         </StackPanel>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="BuyMaxUpgrades" Margin="0 0 0 5"
+                                Click="BuyMaxUpgrades_Click" Style="{StaticResource UTButtonStyle}"
+                                Background="#CC1A1A1A" FontSize="30">Купить максимум улучшений</Button>
                         <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="60" HorizontalAlignment="Right" 
                                 Background="#CC1A1A1A" Name="GoNextButton" Click="GoNextButton_Click" Panel.ZIndex="1">)</Button>
                     </Grid>

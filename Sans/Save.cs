@@ -130,7 +130,7 @@ namespace Sans
         public bool RoomButton { get; set; } = false;
         public bool StatButton { get; set; } = false;
         public int Resets { get; set; } = 0;
-        public double AmalgametTimeIncreaser { get; set; } = 1.0;
+        //public double AmalgametTimeIncreaser { get; set; } = 1.0;
         public Endings End { get; set; } = Endings.Pre;
         public bool EndingWas { get; set; } = false;
         public bool InTutorial { get; set; } = false;
@@ -147,5 +147,8 @@ namespace Sans
         public int LimitLvl { get; set; } = 0;
         public bool OnLimit { get; set; } = false;
         public bool RanAway { get; set; } = false;
+
+        public List<bool> MachinesFull { get; set; } = new() { false, false, false, false };
+        public List<bool> TimeMachinesFull { get; set; } = new() { false, false, false, false };
     }
 }
