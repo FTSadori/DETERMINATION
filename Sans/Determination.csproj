@@ -1,0 +1,1015 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\3712-font.otf" />
+    <None Remove="Fonts\Alabama.ttf" />
+    <None Remove="Fonts\a_ModernoBrk.ttf" />
+    <None Remove="Fonts\beer money.ttf" />
+    <None Remove="Fonts\Comic_Sans_MS.ttf" />
+    <None Remove="Fonts\DeterminationMonoWebRegular-Z5oq.ttf" />
+    <None Remove="Fonts\determinationrusbylyajka.otf" />
+    <None Remove="Fonts\DeterminationSansWebRegular-369X.ttf" />
+    <None Remove="Fonts\Hardpixel.otf" />
+    <None Remove="Fonts\Retroville_NC.ttf" />
+    <None Remove="Fonts\TkachenkoSketch4F-Bold.ttf" />
+    <None Remove="Fonts\TkachenkoSketch4F-Regular.ttf" />
+    <None Remove="Fonts\TMVinograd-Filled.ttf" />
+    <None Remove="Fonts\TMVinograd-FilledOblique.ttf" />
+    <None Remove="Fonts\Ustroke-Regular.ttf" />
+    <None Remove="Fonts\Zhizn.otf" />
+    <None Remove="Images\0pSoul1.png" />
+    <None Remove="Images\0pSoul2.png" />
+    <None Remove="Images\0pSoul3.png" />
+    <None Remove="Images\Block0.png" />
+    <None Remove="Images\Block1.png" />
+    <None Remove="Images\Block2.png" />
+    <None Remove="Images\Block3.png" />
+    <None Remove="Images\broken1.png" />
+    <None Remove="Images\broken2.png" />
+    <None Remove="Images\broken3.png" />
+    <None Remove="Images\broken_soul1.png" />
+    <None Remove="Images\broken_soul2.png" />
+    <None Remove="Images\broken_soul3.png" />
+    <None Remove="Images\Chara1.png" />
+    <None Remove="Images\Chara2.png" />
+    <None Remove="Images\Chara3.png" />
+    <None Remove="Images\CharaE1.png" />
+    <None Remove="Images\CharaE2.png" />
+    <None Remove="Images\CharaE3.png" />
+    <None Remove="Images\Chung1.png" />
+    <None Remove="Images\Chung2.png" />
+    <None Remove="Images\Chung3.png" />
+    <None Remove="Images\Death1.png" />
+    <None Remove="Images\Death2.png" />
+    <None Remove="Images\Death3.png" />
+    <None Remove="Images\DontForget.png" />
+    <None Remove="Images\DT1.png" />
+    <None Remove="Images\DT2.png" />
+    <None Remove="Images\DT3.png" />
+    <None Remove="Images\Hall11.png" />
+    <None Remove="Images\Hall12.png" />
+    <None Remove="Images\Hall13.png" />
+    <None Remove="Images\Hall21.png" />
+    <None Remove="Images\Hall22.png" />
+    <None Remove="Images\Hall23.png" />
+    <None Remove="Images\Hall31.png" />
+    <None Remove="Images\Hall32.png" />
+    <None Remove="Images\Hall33.png" />
+    <None Remove="Images\He1.png" />
+    <None Remove="Images\He2.png" />
+    <None Remove="Images\He3.png" />
+    <None Remove="Images\HeW1.png" />
+    <None Remove="Images\HeW2.png" />
+    <None Remove="Images\HeW3.png" />
+    <None Remove="Images\Hit1.png" />
+    <None Remove="Images\Hit2.png" />
+    <None Remove="Images\Hit3.png" />
+    <None Remove="Images\machine1.png" />
+    <None Remove="Images\machine2.png" />
+    <None Remove="Images\machine3.png" />
+    <None Remove="Images\MachineBG1.png" />
+    <None Remove="Images\MachineBG2.png" />
+    <None Remove="Images\MachineBG3.png" />
+    <None Remove="Images\man_stand1.png" />
+    <None Remove="Images\man_stand2.png" />
+    <None Remove="Images\man_stand3.png" />
+    <None Remove="Images\MessageC1.png" />
+    <None Remove="Images\MessageC2.png" />
+    <None Remove="Images\MessageC3.png" />
+    <None Remove="Images\Messages1.png" />
+    <None Remove="Images\Messages2.png" />
+    <None Remove="Images\Messages3.png" />
+    <None Remove="Images\nothing1.png" />
+    <None Remove="Images\nothing2.png" />
+    <None Remove="Images\nothing3.png" />
+    <None Remove="Images\Paper1.png" />
+    <None Remove="Images\Paper2.png" />
+    <None Remove="Images\Paper3.png" />
+    <None Remove="Images\phone1.png" />
+    <None Remove="Images\phone2.png" />
+    <None Remove="Images\phone3.png" />
+    <None Remove="Images\room1.png" />
+    <None Remove="Images\room2.png" />
+    <None Remove="Images\room3.png" />
+    <None Remove="Images\RoomAlphaBlackBG.png" />
+    <None Remove="Images\RoomAlphaBody1.png" />
+    <None Remove="Images\RoomAlphaBody2.png" />
+    <None Remove="Images\RoomAlphaHands.png" />
+    <None Remove="Images\RoomAlphaHead.png" />
+    <None Remove="Images\RoomAlphaTimeBG.png" />
+    <None Remove="Images\RoomAlphaWing1.png" />
+    <None Remove="Images\RoomAlphaWing2.png" />
+    <None Remove="Images\RoomHall11.png" />
+    <None Remove="Images\RoomHall12.png" />
+    <None Remove="Images\RoomHall13.png" />
+    <None Remove="Images\RoomHall21.png" />
+    <None Remove="Images\RoomHall22.png" />
+    <None Remove="Images\RoomHall23.png" />
+    <None Remove="Images\RoomHeNormal.png" />
+    <None Remove="Images\RoomHisHead2.png" />
+    <None Remove="Images\Screen1.png" />
+    <None Remove="Images\Screen2.png" />
+    <None Remove="Images\Screen3.png" />
+    <None Remove="Images\She1.png" />
+    <None Remove="Images\She2.png" />
+    <None Remove="Images\She3.png" />
+    <None Remove="Images\SheI1.png" />
+    <None Remove="Images\SheI2.png" />
+    <None Remove="Images\SheI3.png" />
+    <None Remove="Images\SheN1.png" />
+    <None Remove="Images\SheN2.png" />
+    <None Remove="Images\SheN3.png" />
+    <None Remove="Images\SmthL1.png" />
+    <None Remove="Images\SmthL2.png" />
+    <None Remove="Images\SmthL3.png" />
+    <None Remove="Images\SmthR1.png" />
+    <None Remove="Images\SmthR2.png" />
+    <None Remove="Images\SmthR3.png" />
+    <None Remove="Images\SSoul1.png" />
+    <None Remove="Images\SSoul2.png" />
+    <None Remove="Images\SSoul3.png" />
+    <None Remove="Images\SStation1.png" />
+    <None Remove="Images\SStation2.png" />
+    <None Remove="Images\SStation3.png" />
+    <None Remove="Images\Time1.png" />
+    <None Remove="Images\Time2.png" />
+    <None Remove="Images\Time3.png" />
+    <None Remove="Images\TimeB1.png" />
+    <None Remove="Images\TimeB2.png" />
+    <None Remove="Images\TimeB3.png" />
+    <None Remove="Images\YouCant1.png" />
+    <None Remove="Images\YouCant2.png" />
+    <None Remove="Images\YouCant3.png" />
+    <None Remove="Text\Manual.txt" />
+    <None Remove="Upgrades\u_act_1.png" />
+    <None Remove="Upgrades\u_act_2.png" />
+    <None Remove="Upgrades\u_act_3.png" />
+    <None Remove="Upgrades\u_amalg_1.png" />
+    <None Remove="Upgrades\u_amalg_2.png" />
+    <None Remove="Upgrades\u_amalg_3.png" />
+    <None Remove="Upgrades\u_amalg_4.png" />
+    <None Remove="Upgrades\u_amalg_5.png" />
+    <None Remove="Upgrades\u_breakingtime_1.png" />
+    <None Remove="Upgrades\u_breakingtime_2.png" />
+    <None Remove="Upgrades\u_breakingtime_3.png" />
+    <None Remove="Upgrades\u_goodending.png" />
+    <None Remove="Upgrades\u_infinity_1.png" />
+    <None Remove="Upgrades\u_infinity_2.png" />
+    <None Remove="Upgrades\u_infinity_3.png" />
+    <None Remove="Upgrades\u_knife_1.png" />
+    <None Remove="Upgrades\u_knife_2.png" />
+    <None Remove="Upgrades\u_lastmachine.png" />
+    <None Remove="Upgrades\u_machine_5.png" />
+    <None Remove="Upgrades\u_machine_6.png" />
+    <None Remove="Upgrades\u_machine_7.png" />
+    <None Remove="Upgrades\u_machine_8.png" />
+    <None Remove="Upgrades\u_machine_A1.png" />
+    <None Remove="Upgrades\u_machine_A1E.png" />
+    <None Remove="Upgrades\u_machine_A2.png" />
+    <None Remove="Upgrades\u_machine_A2E.png" />
+    <None Remove="Upgrades\u_machine_A3.png" />
+    <None Remove="Upgrades\u_machine_A3E.png" />
+    <None Remove="Upgrades\u_machine_A4.png" />
+    <None Remove="Upgrades\u_machine_A5.png" />
+    <None Remove="Upgrades\u_machine_A6.png" />
+    <None Remove="Upgrades\u_machine_I1.png" />
+    <None Remove="Upgrades\u_machine_I2.png" />
+    <None Remove="Upgrades\u_machine_I3.png" />
+    <None Remove="Upgrades\u_machine_I4.png" />
+    <None Remove="Upgrades\u_machine_I5.png" />
+    <None Remove="Upgrades\u_machine_I6.png" />
+    <None Remove="Upgrades\u_machine_II1.png" />
+    <None Remove="Upgrades\u_machine_II2.png" />
+    <None Remove="Upgrades\u_machine_II3.png" />
+    <None Remove="Upgrades\u_machine_II4.png" />
+    <None Remove="Upgrades\u_machine_II5.png" />
+    <None Remove="Upgrades\u_machine_II6.png" />
+    <None Remove="Upgrades\u_machine_III1.png" />
+    <None Remove="Upgrades\u_machine_III2.png" />
+    <None Remove="Upgrades\u_machine_III3.png" />
+    <None Remove="Upgrades\u_machine_III4.png" />
+    <None Remove="Upgrades\u_machine_III5.png" />
+    <None Remove="Upgrades\u_machine_III6.png" />
+    <None Remove="Upgrades\u_machine_IIIt1.png" />
+    <None Remove="Upgrades\u_machine_IIIt2.png" />
+    <None Remove="Upgrades\u_machine_IIIt3.png" />
+    <None Remove="Upgrades\u_machine_IIt1.png" />
+    <None Remove="Upgrades\u_machine_IIt2.png" />
+    <None Remove="Upgrades\u_machine_IIt3.png" />
+    <None Remove="Upgrades\u_machine_It1.png" />
+    <None Remove="Upgrades\u_machine_It2.png" />
+    <None Remove="Upgrades\u_machine_It3.png" />
+    <None Remove="Upgrades\u_machine_IV1.png" />
+    <None Remove="Upgrades\u_machine_IV2.png" />
+    <None Remove="Upgrades\u_machine_IV3.png" />
+    <None Remove="Upgrades\u_machine_IV4.png" />
+    <None Remove="Upgrades\u_machine_IV5.png" />
+    <None Remove="Upgrades\u_machine_IV6.png" />
+    <None Remove="Upgrades\u_machine_IVt1.png" />
+    <None Remove="Upgrades\u_machine_IVt2.png" />
+    <None Remove="Upgrades\u_machine_IVt3.png" />
+    <None Remove="Upgrades\u_needle_1.png" />
+    <None Remove="Upgrades\u_needle_10.png" />
+    <None Remove="Upgrades\u_needle_2.png" />
+    <None Remove="Upgrades\u_needle_3.png" />
+    <None Remove="Upgrades\u_needle_4.png" />
+    <None Remove="Upgrades\u_needle_5.png" />
+    <None Remove="Upgrades\u_needle_6.png" />
+    <None Remove="Upgrades\u_needle_7.png" />
+    <None Remove="Upgrades\u_needle_8.png" />
+    <None Remove="Upgrades\u_needle_9.png" />
+    <None Remove="Upgrades\u_press_1.png" />
+    <None Remove="Upgrades\u_press_2.png" />
+    <None Remove="Upgrades\u_press_3.png" />
+    <None Remove="Upgrades\u_press_4.png" />
+    <None Remove="Upgrades\u_press_5.png" />
+    <None Remove="Upgrades\u_timemachine_I1.png" />
+    <None Remove="Upgrades\u_timemachine_I2.png" />
+    <None Remove="Upgrades\u_timemachine_I3.png" />
+    <None Remove="Upgrades\u_timemachine_I4.png" />
+    <None Remove="Upgrades\u_timemachine_I5.png" />
+    <None Remove="Upgrades\u_timemachine_I6.png" />
+    <None Remove="Upgrades\u_timemachine_II1.png" />
+    <None Remove="Upgrades\u_timemachine_II2.png" />
+    <None Remove="Upgrades\u_timemachine_II3.png" />
+    <None Remove="Upgrades\u_timemachine_II4.png" />
+    <None Remove="Upgrades\u_timemachine_II5.png" />
+    <None Remove="Upgrades\u_timemachine_II6.png" />
+    <None Remove="Upgrades\u_timemachine_III1.png" />
+    <None Remove="Upgrades\u_timemachine_III2.png" />
+    <None Remove="Upgrades\u_timemachine_III3.png" />
+    <None Remove="Upgrades\u_timemachine_III4.png" />
+    <None Remove="Upgrades\u_timemachine_III5.png" />
+    <None Remove="Upgrades\u_timemachine_III6.png" />
+    <None Remove="Upgrades\u_timemachine_IV1.png" />
+    <None Remove="Upgrades\u_timemachine_IV2.png" />
+    <None Remove="Upgrades\u_timemachine_IV3.png" />
+    <None Remove="Upgrades\u_timemachine_IV4.png" />
+    <None Remove="Upgrades\u_timemachine_IV5.png" />
+    <None Remove="Upgrades\u_timemachine_IV6.png" />
+    <None Remove="Upgrades\u_timespace_1.png" />
+    <None Remove="Upgrades\u_timespace_2.png" />
+    <None Remove="Upgrades\u_timespace_3.png" />
+    <None Remove="Upgrades\u_timespace_4.png" />
+    <None Remove="Upgrades\u_timespace_5.png" />
+    <None Remove="Upgrades\u_timespace_6.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\3712-font.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Alabama.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\a_ModernoBrk.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\beer money.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Comic_Sans_MS.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\DeterminationMonoWebRegular-Z5oq.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\determinationrusbylyajka.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\DeterminationSansWebRegular-369X.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Hardpixel.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Retroville_NC.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TkachenkoSketch4F-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TkachenkoSketch4F-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TMVinograd-Filled.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\TMVinograd-FilledOblique.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Ustroke-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Zhizn.otf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\0pSoul1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\0pSoul2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\0pSoul3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Block0.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Block1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Block2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Block3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\broken1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\broken2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\broken3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Chara1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Chara2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Chara3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\CharaE1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\CharaE2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\CharaE3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Chung1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Chung2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Chung3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Death1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Death2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Death3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DontForget.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DT1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DT2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DT3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall11.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall12.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall13.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall21.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall22.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall23.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall31.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall32.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hall33.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\He1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\He2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\He3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HeW1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HeW2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\HeW3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hit1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hit2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Hit3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\machine1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\machine2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\machine3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MachineBG1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MachineBG2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MachineBG3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\man_stand1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\man_stand2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\man_stand3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MessageC1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MessageC2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MessageC3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Messages1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Messages2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Messages3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nothing1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nothing2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nothing3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Paper1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Paper2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Paper3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\room1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\room2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\room3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaBlackBG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaBody1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaBody2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaHands.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaHead.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaTimeBG.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaWing1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomAlphaWing2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHall11.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHall12.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHall13.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHall21.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHall22.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHall23.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHeNormal.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RoomHisHead2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Screen1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Screen2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Screen3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\She1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\She2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\She3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SheI1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SheI2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SheI3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SheN1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SheN2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SheN3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SmthL1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SmthL2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SmthL3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SmthR1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SmthR2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SmthR3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SSoul1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SSoul2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SSoul3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SStation1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SStation2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SStation3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Time1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Time2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Time3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\TimeB1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\TimeB2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\TimeB3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\YouCant1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\YouCant2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\YouCant3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Text\Manual.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_act_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_act_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_act_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_amalg_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_amalg_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_amalg_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_amalg_4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_amalg_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_breakingtime_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_breakingtime_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_breakingtime_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_goodending.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_infinity_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_infinity_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_infinity_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_knife_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_knife_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_lastmachine.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A1E.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A2E.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A3E.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_A6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_I1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_I2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_I3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_I4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_I5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_I6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_II1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_II2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_II3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_II4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_II5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_II6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_III1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_III2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_III3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_III4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_III5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_III6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IIIt1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IIIt2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IIIt3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IIt1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IIt2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IIt3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_It1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_It2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_It3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IV1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IV2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IV3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IV4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IV5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IV6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IVt1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IVt2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_machine_IVt3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_10.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_needle_9.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_press_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_press_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_press_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_press_4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_press_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_I1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_I2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_I3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_I4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_I5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_I6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_II1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_II2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_II3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_II4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_II5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_II6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_III1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_III2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_III3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_III4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_III5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_III6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_IV1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_IV2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_IV3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_IV4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_IV5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timemachine_IV6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timespace_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timespace_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timespace_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timespace_4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timespace_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Upgrades\u_timespace_6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
