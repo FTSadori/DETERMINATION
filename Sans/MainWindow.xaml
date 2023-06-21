@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Sans"
         mc:Ignorable="d" Closed="Window_Closed" Closing="Window_Closing"
         Title="???" SizeToContent="WidthAndHeight" Height="750" Width="1000"
-        KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
+        KeyDown="Window_KeyDown" KeyUp="Window_KeyUp"
+        SizeChanged="Window_SizeChanged">
     <Window.Resources>
         <Style x:Key="DTText" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -21,16 +22,22 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
     </Window.Resources>
-    <Grid Background="Black">
+    <Grid Background="Black" Name="ReallyFreackingImportantGrid">
         <TextBlock Name="UltraBlackScreen" Panel.ZIndex="100000000" Background="Black" Visibility="Hidden"></TextBlock>
 
         <TextBlock Name="LOG" Foreground="White" FontFamily="Fonts/#Hardpixel"
                    FontSize="30" Height="50" VerticalAlignment="Top"
                    Width="300" HorizontalAlignment="Left" TextWrapping="Wrap" Visibility="Visible"/>
-        <Grid Name="BlackScreen" Background="Black" Panel.ZIndex="99" Visibility="Hidden">
+        <Grid Name="BlackScreen" Background="Black" Panel.ZIndex="102" Visibility="Hidden">
             <Image x:Name="OnBlack1" Stretch="Uniform"  Panel.ZIndex="-10"></Image>
             <Image x:Name="OnBlack2" Stretch="Uniform" Panel.ZIndex="-11"></Image>
             <Image x:Name="OnBlack3" Stretch="Uniform" Panel.ZIndex="-12"></Image>
+        </Grid>
+
+        <Grid Name="ResetAnimationGrid" Panel.ZIndex="101" Grid.ColumnSpan="99" Grid.RowSpan="99" Visibility="Hidden" Background="Black">
+            <Image x:Name="Reset1" Stretch="Uniform" Source="Images/0pSoul1.png"></Image>
+            <Image x:Name="Reset2" Stretch="Uniform" Source="Images/0pSoul2.png"></Image>
+            <Image x:Name="Reset3" Stretch="Uniform" Source="Images/0pSoul3.png"></Image>
         </Grid>
 
         <Grid Width="600" Height="300" Background="White" Name="UpgradeBubble" Visibility="Hidden" Panel.ZIndex="100">
@@ -39,7 +46,7 @@
                     <StackPanel Width="140" Height="140" Background="White" Name="UpgradeBubbleStack">
                         <Image x:Name="CurrentUpgrade" Margin="5"/>
                     </StackPanel>
-                    <TextBlock Style="{DynamicResource VinoDTText}" FontSize="60"
+                    <TextBlock Style="{DynamicResource VinoDTText}" FontSize="40"
                                Width="410" Name="CurrentUpgradeName" Margin="15"
                                TextWrapping="Wrap">Real cool upgrade</TextBlock>
                 </StackPanel>
@@ -48,10 +55,10 @@
                                TextWrapping="Wrap">Real cool upgrade</TextBlock>
             </StackPanel>
             <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="CloseUpgradeBubble"
-                    Style="{DynamicResource UTButtonStyle}" FontSize="30"
+                    Style="{DynamicResource UTButtonStyle}" FontSize="35"
                     Margin="20" Click="CloseUpgradeBubble_Click">Back</Button>
             <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="BuyUpgradeBubble"
-                    Style="{DynamicResource UTButtonStyle}" FontSize="30"
+                    Style="{DynamicResource UTButtonStyle}" FontSize="35"
                     Margin="20">Купить</Button>
         </Grid>
 
@@ -60,61 +67,61 @@
         <StackPanel Name="ManualGrid" Panel.ZIndex="1001" Visibility="Hidden" VerticalAlignment="Center"
                     Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Style="{DynamicResource UTButtonStyle}" Name="PrevPageButton" Click="PrevPageButton_Click"
-                    FontSize="30" Opacity="1" Margin="0 0 10 0">
+                    FontSize="35" Opacity="1" Margin="0 0 10 0">
                 Prev
             </Button>
             <Grid Background="White" Name="ManualPages" Width="800" Height="500">
                 <Grid Background="Black" Name="LeftPageGrid" Height="480" Width="360" HorizontalAlignment="Left" Margin="10 0 0 0">
                     <StackPanel>
                         <TextBlock FontFamily="Fonts/#Zhizn" TextAlignment="Center" TextWrapping="Wrap" Foreground="White"
-                           FontSize="35" Margin="10" Name="LabelPage1">
+                           FontSize="39" Margin="10" Name="LabelPage1">
                         </TextBlock>
                         <TextBlock FontFamily="Fonts/#Zhizn" TextAlignment="Justify" TextWrapping="Wrap" Foreground="White"
-                           FontSize="25" Margin="15 0 15 15" Name="TextPage1">
+                           FontSize="28" Margin="15 0 15 15" Name="TextPage1">
                         </TextBlock>
                     </StackPanel>
-                    <TextBlock FontSize="30" Margin="15" VerticalAlignment="Bottom" Name="PageNum1"
+                    <TextBlock FontSize="35" Margin="15" VerticalAlignment="Bottom" Name="PageNum1"
                                FontFamily="Fonts/#Zhizn" Foreground="White">1</TextBlock>
                 </Grid>
                 <Grid Background="Black" Name="RightPageGrid" Height="480" Width="360" HorizontalAlignment="Right" Margin="0 0 10 0">
                     <Button HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource UTButtonStyle}" Panel.ZIndex="10"
-                            FontSize="30" Opacity="0.5" Margin="0 0 10 0" Name="CloseManualButton" Click="CloseManualButton_Click">
+                            FontSize="35" Opacity="0.5" Margin="0 0 10 0" Name="CloseManualButton" Click="CloseManualButton_Click">
                         [X]
                     </Button>
                     <StackPanel>
                         <TextBlock FontFamily="Fonts/#Zhizn" TextAlignment="Center" TextWrapping="Wrap" Foreground="White"
-                           FontSize="35" Margin="10" Name="LabelPage2">
+                           FontSize="39" Margin="10" Name="LabelPage2">
                         </TextBlock>
                         <TextBlock FontFamily="Fonts/#Zhizn" TextAlignment="Justify" TextWrapping="Wrap" Foreground="White"
-                           FontSize="25" Margin="15 0 15 15" Name="TextPage2">
+                           FontSize="28" Margin="15 0 15 15" Name="TextPage2">
                         </TextBlock>
                     </StackPanel>
-                    <TextBlock FontSize="30" Margin="15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="PageNum2"
+                    <TextBlock FontSize="35" Margin="15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="PageNum2"
                                FontFamily="Fonts/#Zhizn" Foreground="White">2</TextBlock>
                 </Grid>
             </Grid>
             <Button Style="{DynamicResource UTButtonStyle}" Name="NextPageButton" Click="NextPageButton_Click"
-                    FontSize="30" Opacity="1" Margin="10 0 0 0">
+                    FontSize="35" Opacity="1" Margin="10 0 0 0">
                 Next
             </Button>
         </StackPanel>
 
-        <Grid Background="White" Width="600" Height="530" Name="SettingsBubble" Panel.ZIndex="1001" Visibility="Hidden">
-            <Grid Margin="10" Background="Black">
+        <Grid Background="White" Width="600" Height="620" Name="SettingsBubble" Panel.ZIndex="1001" Visibility="Hidden">
+            <Grid Margin="10" Background="Black" Name="SettingsBlackFrame">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15" Style="{DynamicResource DTText}"
                            FontSize="50" Name="SettingsTitle">НАСТРОЙКИ</TextBlock>
-                <StackPanel Margin="20 100 20 0">
+                <StackPanel Margin="17 85 17 0" Name="MainSettingsStack">
                     <TextBlock Margin="10" Style="{DynamicResource DTText}" HorizontalAlignment="Center" FontSize="30" Name="SaveSettingsText">Сохранение</TextBlock>
-                    <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" Name="SaveStack">
                         <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080" HorizontalAlignment="Right"
-                                    FontSize="20" Name="SaveButton" Click="SaveButton_Click" Margin="9 0 9 0">сохраниться
+                                    FontSize="25" Name="SaveButton" Click="SaveButton_Click" Margin="9 0 9 0">сохраниться
                         </Button>
                         <Button Style="{DynamicResource UTButtonStyle}" Background="DarkRed" HorizontalAlignment="Right"
-                                    FontSize="20" Name="DeleteSaveButton" Click="DeleteSaveButton_Click"  Margin="9 0 9 0">очистить
+                                    FontSize="25" Name="DeleteSaveButton" Click="DeleteSaveButton_Click"  Margin="9 0 9 0">очистить
                         </Button>
                     </StackPanel>
                     <TextBlock Margin="10" Style="{DynamicResource DTText}" HorizontalAlignment="Center" FontSize="30" Name="UISettingsText">Интерфейс</TextBlock>
-                    <Grid Margin="10">
+                    <Grid Margin="10" Name="GridUI">
                         <TextBlock Style="{DynamicResource DTText}" HorizontalAlignment="Left" FontSize="30" Name="UISizeText">Размер UI</TextBlock>
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080"
@@ -125,14 +132,39 @@
                                     FontSize="20" Name="UIbigger" Click="UIbigger_Click">+)</Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="10">
+                    <Grid Margin="10" Name="FullscreenUI">
                         <TextBlock Style="{DynamicResource DTText}" HorizontalAlignment="Left" FontSize="30" Name="OnFullscreenText">На полный екран</TextBlock>
                         <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080" HorizontalAlignment="Right"
                                     FontSize="20" Name="FullscreenButton" Click="FullscreenButton_Click"  Width="70" Margin="0 0 18 0">выкл
                         </Button>
                     </Grid>
+                    <TextBlock Margin="10" Style="{DynamicResource DTText}" HorizontalAlignment="Center" FontSize="30" Name="SoundSettingsText">Музыка и звуки</TextBlock>
+                    <Grid>
+                        <TextBlock Style="{DynamicResource DTText}" HorizontalAlignment="Left"
+                                   FontSize="20" Name="SoundVolumeLabel">Громкость музыки</TextBlock>
+                        <TextBlock Style="{DynamicResource DTText}" HorizontalAlignment="Right"
+                                   FontSize="20" Name="MusicVolumeLabel">Громкость звуков</TextBlock>
+                    </Grid>
+                    <Grid Margin="10" Name="GridBL">
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080"
+                                    FontSize="20" Name="Musicless" Click="Musicless_Click">(-</Button>
+                            <TextBlock Width="70" Style="{DynamicResource DTText}" TextAlignment="Center" Name="MusicPercent"
+                                       VerticalAlignment="Center" FontSize="25"></TextBlock>
+                            <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080"
+                                    FontSize="20" Name="Musicbigger" Click="Musicbigger_Click">+)</Button>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080"
+                                    FontSize="20" Name="Soundless" Click="Soundless_Click">(-</Button>
+                            <TextBlock Width="70" Style="{DynamicResource DTText}" TextAlignment="Center" Name="SoundPercent"
+                                       VerticalAlignment="Center" FontSize="25"></TextBlock>
+                            <Button Style="{DynamicResource UTButtonStyle}" Background="#7F808080"
+                                    FontSize="20" Name="Soundbigger" Click="Soundbigger_Click">+)</Button>
+                        </StackPanel>
+                    </Grid>
                     <Button Style="{DynamicResource UTButtonStyle}" Background="DarkRed" HorizontalAlignment="Center"
-                            Margin="15" FontSize="23" Name="ExitGameButton" Click="ExitGameButton_Click">Выйти с игры
+                            Margin="15" FontSize="30" Name="ExitGameButton" Click="ExitGameButton_Click">Выйти с игры
                     </Button>
                 </StackPanel>
                 <Button Style="{DynamicResource UTButtonStyle}" VerticalAlignment="Bottom" Margin="10" FontSize="45"
@@ -146,7 +178,7 @@
                 Margin="0 0 0 50" Click="Start_Click">
             Старт</Button>
 
-        <Grid Name="ReallyMainGrid">
+        <Grid Name="ReallyMainGrid" Width="1000">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.18*"/>
                 <RowDefinition Height="0.30*"/>
@@ -166,13 +198,13 @@
                 Stat
             </Button>
 
-            <TextBlock Grid.Row="0" FontSize="30" Visibility="Hidden" VerticalAlignment="Bottom"
+            <TextBlock Grid.Row="0" FontSize="26" Visibility="Hidden" VerticalAlignment="Bottom"
                        Style="{StaticResource VinoDTText}" Name="RPcounter" Foreground="#FFBA8D17"
                        >0 Очков сброса</TextBlock>
-            <TextBlock Grid.Row="1" FontSize="50" Visibility="Hidden" VerticalAlignment="Center"
+            <TextBlock Grid.Row="1" FontSize="45" Visibility="Hidden" VerticalAlignment="Center"
                        Style="{StaticResource VinoDTText}" Name="DTcounter" Foreground="LightGray"
                        >0 Решимости</TextBlock>
-            <TextBlock Grid.Row="2" FontSize="32" Foreground="Gray"
+            <TextBlock Grid.Row="2" FontSize="26" Foreground="Gray"
                        Style="{StaticResource VinoDTText}" Name="DTpscounter" Visibility="Hidden"
                        >0 Решимости в секунду</TextBlock>
             <TextBlock Grid.Row="2" FontSize="17" Visibility="Hidden" VerticalAlignment="Bottom"
@@ -218,7 +250,7 @@
 
                 <Grid Name="UpgradesGrid" Background="#4C1A1A1A" Visibility="Hidden">
                     <Grid Name="UpgradesGridScalable">
-                        <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="60" HorizontalAlignment="Left"
+                        <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="50" HorizontalAlignment="Left"
                                 Background="#CC1A1A1A" Name="GoBackButton" Click="GoBackButton_Click" Panel.ZIndex="1">(</Button>
                         <StackPanel Name="UpgradesStack" Orientation="Horizontal" HorizontalAlignment="Left" Margin="50 0 50 0">
 
@@ -226,7 +258,7 @@
                         <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="BuyMaxUpgrades" Margin="0 0 0 5"
                                 Click="BuyMaxUpgrades_Click" Style="{StaticResource UTButtonStyle}"
                                 Background="#CC1A1A1A" FontSize="30">Купить максимум улучшений</Button>
-                        <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="60" HorizontalAlignment="Right" 
+                        <Button Width="50" Style="{StaticResource UTButtonStyle}" FontSize="50" HorizontalAlignment="Right" 
                                 Background="#CC1A1A1A" Name="GoNextButton" Click="GoNextButton_Click" Panel.ZIndex="1">)</Button>
                     </Grid>
                 </Grid>
@@ -241,10 +273,10 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Name="Machine1" Margin="10" Visibility="Visible">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="60" Name="Machine1Name">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="50" Name="Machine1Name">
                             Корпус 1
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine1Count">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="Machine1Count">
                             0 Улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine1" FontSize="40" Click="BuyMachine1_Click">0 реш.</Button>
@@ -254,10 +286,10 @@
                         </StackPanel>
 
                         <StackPanel Name="Machine2" Margin="10" Grid.Column="1" Visibility="Hidden">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="60" Name="Machine2Name">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="50" Name="Machine2Name">
                             Корпус 2
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine2Count">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="Machine2Count">
                             0 Улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine2" FontSize="40" Click="BuyMachine2_Click">0 реш.</Button>
@@ -267,10 +299,10 @@
                         </StackPanel>
 
                         <StackPanel Name="Machine3" Margin="10" Grid.Column="2" Visibility="Hidden">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="60" Name="Machine3Name">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="50" Name="Machine3Name">
                             Корпус 3
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine3Count">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="Machine3Count">
                             0 Улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine3" FontSize="40" Click="BuyMachine3_Click">0 реш.</Button>
@@ -280,10 +312,10 @@
                         </StackPanel>
 
                         <StackPanel Name="Machine4" Margin="10" Grid.Column="3" Visibility="Hidden">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="60" Name="Machine4Name">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="50" Name="Machine4Name">
                             Корпус 4
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="Machine4Count">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="Machine4Count">
                             0 улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTButtonStyle}" Name="BuyMachine4" FontSize="40" Click="BuyMachine4_Click">0 реш.</Button>
@@ -304,11 +336,11 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Name="TimeMachine1" Margin="10" Visibility="Visible">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="40" Foreground="#FFFF4A4A"
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="45" Foreground="#FFFF4A4A"
                                    TextWrapping="WrapWithOverflow" TextAlignment="Center" Name="TimeMachine1Name">
                             Корпус времени 1
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="TimeMachine1Count" Foreground="#FFFA6E6E">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="TimeMachine1Count" Foreground="#FFFA6E6E">
                             0 улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTRedButtonStyle}" Name="BuyTimeMachine1" FontSize="40" Click="BuyTimeMachine1_Click">
@@ -320,11 +352,11 @@
                         </StackPanel>
 
                         <StackPanel Name="TimeMachine2" Margin="10" Visibility="Visible" Grid.Column="1">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="40" Foreground="#FFFF4A4A"
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="45" Foreground="#FFFF4A4A"
                                    TextWrapping="WrapWithOverflow" TextAlignment="Center" Name="TimeMachine2Name">
                             Корпус времени 2
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="TimeMachine2Count" Foreground="#FFFA6E6E">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="TimeMachine2Count" Foreground="#FFFA6E6E">
                             0 улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTRedButtonStyle}" Name="BuyTimeMachine2" FontSize="40" Click="BuyTimeMachine2_Click">
@@ -336,11 +368,11 @@
                         </StackPanel>
 
                         <StackPanel Name="TimeMachine3" Margin="10" Visibility="Visible" Grid.Column="2">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="40" Foreground="#FFFF4A4A"
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="45" Foreground="#FFFF4A4A"
                                    TextWrapping="WrapWithOverflow" TextAlignment="Center" Name="TimeMachine3Name">
                             Корпус времени 3
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="TimeMachine3Count" Foreground="#FFFA6E6E">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="TimeMachine3Count" Foreground="#FFFA6E6E">
                             0 улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTRedButtonStyle}" Name="BuyTimeMachine3" FontSize="40" Click="BuyTimeMachine3_Click">
@@ -352,11 +384,11 @@
                         </StackPanel>
 
                         <StackPanel Name="TimeMachine4" Margin="10" Visibility="Visible" Grid.Column="3">
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="40" Foreground="#FFFF4A4A"
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="45" Foreground="#FFFF4A4A"
                                    TextWrapping="WrapWithOverflow" TextAlignment="Center" Name="TimeMachine4Name">
                             Корпус времени 4
                             </TextBlock>
-                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="30" Name="TimeMachine4Count" Foreground="#FFFA6E6E">
+                            <TextBlock Style="{StaticResource VinoDTText}" FontSize="25" Name="TimeMachine4Count" Foreground="#FFFA6E6E">
                             0 улучшений
                             </TextBlock>
                             <Button Style="{DynamicResource UTDTRedButtonStyle}" Name="BuyTimeMachine4" FontSize="40" Click="BuyTimeMachine4_Click">

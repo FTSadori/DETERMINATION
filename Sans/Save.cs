@@ -139,6 +139,7 @@ namespace Sans
         public bool IsLastBattle { get; set; } = new();
         public int LastBattleTimes { get; set; } = new();
         public double UIScale { get; set; } = 1.0;
+        public double UIFullscreenScale { get; set; } = 1.0;
 
         public List<int> ManualPagesAvailable { get; set; } = new() { 0, 1, 2, 3, 12, 13 };
         public int ManualPagesReadedMax { get; set; } = 0;
@@ -150,5 +151,12 @@ namespace Sans
 
         public List<bool> MachinesFull { get; set; } = new() { false, false, false, false };
         public List<bool> TimeMachinesFull { get; set; } = new() { false, false, false, false };
+
+        public double MusicVolume { get; set; } = 0.5;
+        public double SoundVolume { get; set; } = 0.5;
+        public bool IsFullscreen { get; set; } = false;
+
+        public double WindowHeight { get; set; } = 0.0;
+        public double WindowWidth { get; set; } = 0.0;
     }
 }

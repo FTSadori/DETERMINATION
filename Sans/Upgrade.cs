@@ -5,19 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
+using System.Windows;
 
 namespace Sans
 {
     public class Upgrades
     {
         public static List<Upgrade> UpgradesList = new();
-        private static string Path = "Text/Translate/upgrades.txt";
+        private static string Path = $"pack://application:,,,/Text/upgrades.txt";
 
         public static void ReadUpgrades()
         {
-            if (!File.Exists(Path)) throw new Exception("Upgrades File cannot be found");
-        
-            StreamReader sr = new StreamReader(Path);
+            StreamReader sr = new(Application.GetResourceStream(new Uri(Path)).Stream);
             string path, name, desk, json;
             while (!sr.EndOfStream)
             {

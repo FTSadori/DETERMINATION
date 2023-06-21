@@ -5,7 +5,15 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>determination.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Music\**" />
+    <EmbeddedResource Remove="Music\**" />
+    <None Remove="Music\**" />
+    <Page Remove="Music\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Fonts\3712-font.otf" />
@@ -147,7 +155,9 @@
     <None Remove="Images\YouCant1.png" />
     <None Remove="Images\YouCant2.png" />
     <None Remove="Images\YouCant3.png" />
+    <None Remove="Text\dialogs.txt" />
     <None Remove="Text\Manual.txt" />
+    <None Remove="Text\upgrades.txt" />
     <None Remove="Upgrades\u_act_1.png" />
     <None Remove="Upgrades\u_act_2.png" />
     <None Remove="Upgrades\u_act_3.png" />
@@ -260,6 +270,10 @@
     <None Remove="Upgrades\u_timespace_4.png" />
     <None Remove="Upgrades\u_timespace_5.png" />
     <None Remove="Upgrades\u_timespace_6.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="determination.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -671,7 +685,13 @@
     <Resource Include="Images\YouCant3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Text\dialogs.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Text\Manual.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Text\upgrades.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Upgrades\u_act_1.png">

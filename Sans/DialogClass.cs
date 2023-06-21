@@ -110,9 +110,11 @@ namespace Sans
 
         private static Dictionary<string, List<Dialog>> AllDialogs = new();
 
+        private static string Path = $"pack://application:,,,/Text/dialogs.txt";
+
         static public void LoadDialogs()
         {
-            StreamReader streamReader = new("Text/dialogs.txt");
+            StreamReader streamReader = new(Application.GetResourceStream(new Uri(Path)).Stream);
             string key = String.Empty;
             
             foreach (var line in streamReader.ReadToEnd().Split('\n'))

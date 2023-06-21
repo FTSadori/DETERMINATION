@@ -262,7 +262,7 @@ namespace Sans
             dialogThread.Start();
             dialogThread.IsBackground = true;
         }
-        public void Win()
+        public void Win(bool force = false)
         {
             IsBattleClosed = true;
 
@@ -276,7 +276,19 @@ namespace Sans
                     Thread.Sleep(10);
                 }
                 MainWindow.DoCmd(delegate () { Obstacles.Background = Brushes.Transparent; });
-                MainWindow.DoCmd(delegate () { FightingScreen.Visibility = Visibility.Hidden; Obstacles.Visibility = Visibility.Hidden; });
+                MainWindow.DoCmd(delegate () { 
+                    FightingScreen.Visibility = Visibility.Hidden; 
+                    Obstacles.Visibility = Visibility.Hidden;
+
+                    if (!force)
+                    {
+                        Save.save.AmalgamWin++;
+                        if (Save.save.AmalgamWin == 1)
+                        {
+                            Close();
+                        }
+                    }
+                });
             });
             WinThread.Start();
             WinThread.IsBackground = true;
@@ -286,8 +298,6 @@ namespace Sans
             RAmalgamet.Visibility = Visibility.Hidden;
 
             AmalgametHandler.IsActive = true;
-
-            Save.save.AmalgamWin++;
         }
 
         int gameoverspeed = 100;

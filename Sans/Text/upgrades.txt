@@ -1,0 +1,448 @@
+machine_I1
+Улучшенный I корпус
+Мощность первого корпуса повышается
+{"Price":66,"MachineUpgrades":[2,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_I2
+Стальной I корпус
+Мощность первого корпуса повышается
+{"Price":666,"MachineUpgrades":[2,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_I3
+Мощный I корпус
+Мощность первого корпуса повышается
+{"Price":6666,"MachineUpgrades":[2,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_I4
+Титаниевый I корпус
+Мощность первого корпуса повышается
+{"Price":66666,"MachineUpgrades":[2,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_I5
+Прочный I корпус
+Мощность первого корпуса повышается
+{"Price":666666,"MachineUpgrades":[2,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_I6
+Переработанный I корпус
+Мощность первого корпуса повышается
+{"Price":6.66e6,"MachineUpgrades":[2,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_It1
+Межвременной I корпус 1
+Мощность первого корпуса заметно повышается
+{"Price":6.66e8,"MachineUpgrades":[6,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_It2
+Межвременной I корпус 2
+Мощность первого корпуса заметно повышается
+{"Price":6.66e10,"MachineUpgrades":[6,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_It3
+Межвременной I корпус 3
+Мощность первого корпуса заметно повышается
+{"Price":6.66e12,"MachineUpgrades":[6,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_II1
+Улучшенный II корпус
+Мощность второго корпуса повышается
+{"Price":6666,"MachineUpgrades":[1,2,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_II2
+Стальной II корпус
+Мощность второго корпуса повышается
+{"Price":66666,"MachineUpgrades":[1,2,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_II3
+Мощный II корпус
+Мощность второго корпуса повышается
+{"Price":6.66e6,"MachineUpgrades":[1,2,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_II4
+Титаниевый II корпус
+Мощность второго корпуса повышается
+{"Price":6.66e7,"MachineUpgrades":[1,2,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_II5
+Прочный II корпус
+Мощность второго корпуса повышается
+{"Price":6.66e8,"MachineUpgrades":[1,2,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_II6
+Переработанный II корпус
+Мощность второго корпуса повышается
+{"Price":6.66e9,"MachineUpgrades":[1,2,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IIt1
+Межвременной II корпус 1
+Мощность второго корпуса заметно повышается
+{"Price":6.66e11,"MachineUpgrades":[1,6,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IIt2
+Межвременной II корпус 2
+Мощность второго корпуса заметно повышается
+{"Price":6.66e13,"MachineUpgrades":[1,6,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IIt3
+Межвременной II корпус 3
+Мощность второго корпуса заметно повышается
+{"Price":6.66e15,"MachineUpgrades":[1,6,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_III1
+Улучшенный III корпус
+Мощность третьего корпуса повышается
+{"Price":6.66e7,"MachineUpgrades":[1,1,2,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_III2
+Стальной III корпус
+Мощность третьего корпуса повышается
+{"Price":6.66e8,"MachineUpgrades":[1,1,2,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_III3
+Мощный III корпус
+Мощность третьего корпуса повышается
+{"Price":6.66e10,"MachineUpgrades":[1,1,2,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_III4
+Титаниевый III корпус
+Мощность третьего корпуса повышается
+{"Price":6.66e11,"MachineUpgrades":[1,1,2,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_III5
+Прочный III корпус
+Мощность третьего корпуса повышается
+{"Price":6.66e12,"MachineUpgrades":[1,1,2,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_III6
+Переработанный III корпус
+Мощность третьего корпуса повышается
+{"Price":6.66e14,"MachineUpgrades":[1,1,2,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IIIt1
+Межвременной III корпус 1
+Мощность третьего корпуса заметно повышается
+{"Price":6.66e16,"MachineUpgrades":[1,1,6,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IIIt2
+Межвременной III корпус 2
+Мощность третьего корпуса заметно повышается
+{"Price":6.66e18,"MachineUpgrades":[1,1,6,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IIIt3
+Межвременной III корпус 3
+Мощность третьего корпуса заметно повышается
+{"Price":6.66e20,"MachineUpgrades":[1,1,6,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IV1
+Улучшенный IV корпус
+Мощность четвертого корпуса повышается
+{"Price":6.66e14,"MachineUpgrades":[1,1,1,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IV2
+Стальной IV корпус
+Мощность четвертого корпуса повышается
+{"Price":6.66e15,"MachineUpgrades":[1,1,1,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IV3
+Мощный IV корпус
+Мощность четвертого корпуса повышается
+{"Price":6.66e16,"MachineUpgrades":[1,1,1,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IV4
+Титаниевый IV корпус
+Мощность четвертого корпуса повышается
+{"Price":6.66e17,"MachineUpgrades":[1,1,1,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IV5
+Прочный IV корпус
+Мощность четвертого корпуса повышается
+{"Price":6.66e18,"MachineUpgrades":[1,1,1,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IV6
+Переработанный IV корпус
+Мощность четвертого корпуса повышается
+{"Price":6.66e19,"MachineUpgrades":[1,1,1,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IVt1
+Межвременной IV корпус 1
+Мощность четвертого корпуса заметно повышается
+{"Price":6.66e21,"MachineUpgrades":[1,1,1,6],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IVt2
+Межвременной IV корпус 2
+Мощность четвертого корпуса заметно повышается
+{"Price":6.66e23,"MachineUpgrades":[1,1,1,6],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_IVt3
+Межвременной IV корпус 3
+Мощность четвертого корпуса заметно повышается
+{"Price":6.66e25,"MachineUpgrades":[1,1,1,6],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A1
+Повышенная мощность корпусов 1
+Мощность всех корпусов немного повышается
+{"Price":256,"MachineUpgrades":[1.5,1.5,1.5,1.5],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A2
+Повышенная мощность корпусов 2
+Мощность каждого корпуса повышается
+{"Price":2.56e3,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A3
+Повышенная мощность корпусов 3
+Мощность каждого корпуса повышается
+{"Price":2.56e5,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A4
+Повышенная мощность корпусов 4
+Мощность каждого корпуса повышается
+{"Price":2.56e8,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A5
+Повышенная мощность корпусов 5
+Мощность каждого корпуса повышается
+{"Price":2.56e15,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A6
+Повышенная мощность корпусов 6
+Мощность каждого корпуса повышается
+{"Price":2.56e25,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_1
+Вторая игла
+Для более быстрого ручного вытягивания решимости
+{"Price":11,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_2
+Четвертая игла
+Для более быстрого ручного вытягивания решимости
+{"Price":111,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+press_1
+Повышенное давление
+Для заметно более быстрого ручного вытягивания решимости
+{"Price":1111,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":4,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_3
+Восьмая игла
+Для более быстрого ручного вытягивания решимости
+{"Price":11111,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+press_2
+Повышенное давление 2
+Для заметно более быстрого ручного вытягивания решимости
+{"Price":111111,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":4,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_4
+16 игл
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e6,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_5
+32 иглы
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e7,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+press_3
+Повышенное давление 3
+Для заметно более быстрого ручного вытягивания решимости
+{"Price":1.11e8,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":4,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_5
+Пятый корпус
+Ручное вытягивание решимости умножается на кол-во улучшений первого корпуса
+{"Price":1.11e9,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":4,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_6
+64 иглы
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e10,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_7
+128 игл
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e11,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_6
+Шестой корпус
+Ручное вытягивание решимости умножается на кол-во улучшений второго корпуса
+{"Price":1.11e13,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":4,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+press_4
+Повышенное давление 4
+Для заметно более быстрого ручного вытягивания решимости
+{"Price":1.11e15,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":4,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_8
+256 игл
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e16,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_9
+512 игл
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e17,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_7
+Седьмой корпус
+Ручное вытягивание решимости умножается на кол-во улучшений третьего корпуса
+{"Price":1.11e19,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":16,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+needle_9
+Тысяча игл
+Для более быстрого ручного вытягивания решимости
+{"Price":1.11e21,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+press_5
+Повышенное давление 5
+Для заметно более быстрого ручного вытягивания решимости
+{"Price":1.11e22,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":4,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_8
+Восьмой корпус
+Ручное вытягивание решимости умножается на кол-во улучшений четвертого корпуса
+{"Price":1.11e24,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":26,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+lastmachine
+[Вечное] Последний корпус
+Ручное вытягивание умножается на показатель реш/с.
+{"Price":1,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":26,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_I1
+[Вечное] Улучшенный I корпус времени 1
+Мощность первого корпуса времени повышается
+{"Price":1e8,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[2,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_I2
+[Вечное] Улучшенный I корпус времени 2
+Мощность первого корпуса времени повышается
+{"Price":1e10,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[2,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_I3
+[Вечное] Улучшенный I корпус времени 3
+Мощность первого корпуса времени повышается
+{"Price":1e14,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[2,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_I4
+[Вечное] Улучшенный I корпус времени 4
+Мощность первого корпуса времени повышается
+{"Price":1e18,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[2,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_I5
+[Вечное] Улучшенный I корпус времени 5
+Мощность первого корпуса времени повышается
+{"Price":1e22,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[2,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_I6
+[Вечное] Улучшенный I корпус времени 6
+Мощность первого корпуса времени повышается
+{"Price":1e26,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[2,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_II1
+[Вечное] Улучшенный II корпус времени 1
+Мощность второго корпуса времени повышается
+{"Price":1e12,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,2,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_II2
+[Вечное] Улучшенный II корпус времени 2
+Мощность второго корпуса времени повышается
+{"Price":1e14,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,2,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_II3
+[Вечное] Улучшенный II корпус времени 3
+Мощность второго корпуса времени повышается
+{"Price":1e18,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,2,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_II4
+[Вечное] Улучшенный II корпус времени 4
+Мощность второго корпуса времени повышается
+{"Price":1e22,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,2,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_II5
+[Вечное] Улучшенный II корпус времени 5
+Мощность второго корпуса времени повышается
+{"Price":1e26,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,2,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_II6
+[Вечное] Улучшенный II корпус времени 6
+Мощность второго корпуса времени повышается
+{"Price":1e30,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,2,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_III1
+[Вечное] Улучшенный III корпус времени 1
+Мощность третьего корпуса времени повышается
+{"Price":1e20,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,2,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_III2
+[Вечное] Улучшенный III корпус времени 2
+Мощность третьего корпуса времени повышается
+{"Price":1e22,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,2,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_III3
+[Вечное] Улучшенный III корпус времени 3
+Мощность третьего корпуса времени повышается
+{"Price":1e26,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,2,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_III4
+[Вечное] Улучшенный III корпус времени 4
+Мощность третьего корпуса времени повышается
+{"Price":1e30,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,2,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_III5
+[Вечное] Улучшенный III корпус времени 5
+Мощность третьего корпуса времени повышается
+{"Price":1e34,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,2,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_III6
+[Вечное] Улучшенный III корпус времени 6
+Мощность третьего корпуса времени повышается
+{"Price":1e38,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,2,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_IV1
+[Вечное] Улучшенный IV корпус времени 1
+Мощность четвертого корпуса времени повышается
+{"Price":1e30,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,2],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_IV2
+[Вечное] Улучшенный IV корпус времени 2
+Мощность четвертого корпуса времени повышается
+{"Price":1e32,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,2],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_IV3
+[Вечное] Улучшенный IV корпус времени 3
+Мощность четвертого корпуса времени повышается
+{"Price":1e36,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,2],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_IV4
+[Вечное] Улучшенный IV корпус времени 4
+Мощность четвертого корпуса времени повышается
+{"Price":1e40,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,2],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_IV5
+[Вечное] Улучшенный IV корпус времени 5
+Мощность четвертого корпуса времени повышается
+{"Price":1e44,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,2],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timemachine_IV6
+[Вечное] Улучшенный IV корпус времени 6
+Мощность четвертого корпуса времени повышается
+{"Price":1e48,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,2],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+timespace_1
+[Вечное] Перемещение во времени и пространстве 1
+Количество ОС за СБРОС повышается
+{"Price":1e13,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1.3}
+timespace_2
+[Вечное] Перемещение во времени и пространстве 2
+Количество ОС за СБРОС повышается
+{"Price":1e16,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1.3}
+timespace_3
+[Вечное] Перемещение во времени и пространстве 3
+Количество ОС за СБРОС повышается
+{"Price":1e20,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1.6}
+timespace_4
+[Вечное] Перемещение во времени и пространстве 4
+Количество ОС за СБРОС повышается
+{"Price":1e25,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1.6}
+timespace_5
+[Вечное] Перемещение во времени и пространстве 5
+Количество ОС за СБРОС повышается
+{"Price":1e30,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":2}
+timespace_6
+[Вечное] Перемещение во времени и пространстве 6
+Количество ОС за СБРОС повышается
+{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":2}
+machine_A1E
+[Вечное] Искривление пространства 1
+Мощность всех корпусов решимости значительно повышается навсегда
+{"Price":1e13,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A2E
+[Вечное] Искривление пространства 2
+Мощность всех корпусов решимости значительно повышается навсегда
+{"Price":1e23,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+machine_A3E
+[Вечное] Искривление пространства 3
+Мощность всех корпусов решимости значительно повышается навсегда
+{"Price":1e33,"MachineUpgrades":[2,2,2,2],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
+breakingtime_1
+[Вечное] Разлом времени 1
+Невероятно ускоряет процесс создания корпусов времени
+{"Price":1e33,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"TimeSpeed":6}
+breakingtime_2
+[Вечное] Разлом времени 2
+Невероятно ускоряет процесс создания корпусов времени
+{"Price":1e39,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"TimeSpeed":6}
+breakingtime_3
+[Вечное] Разлом времени 3
+Невероятно ускоряет процесс создания корпусов времени
+{"Price":1e43,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"TimeSpeed":6}
+infinity_1
+[Вечное] Бесконечность 1
+Каждую секунду число решимости растет на 2%
+{"Price":1e25,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":2}
+infinity_2
+[Вечное] Бесконечность 2
+Каждую секунду число решимости растет ещё на 5%
+{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":4}
+infinity_3
+[Вечное] Бесконечность 3
+Каждую секунду число решимости растет ещё на 10%
+{"Price":1e50,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":6}
+goodending
+Все счастливы
+Купи это и все будут счастливы
+{"Price":1e241,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":0}
+amalg_1
+Усмирение 1
+Амальгаметы появляются реже
+{"Price":1e7,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1.3}
+amalg_2
+Усмирение 2
+Амальгаметы появляются реже
+{"Price":1e17,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1.3}
+amalg_3
+Усмирение 3
+Амальгаметы появляются реже
+{"Price":1e27,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1.3}
+amalg_4
+Усмирение 4
+Амальгаметы появляются реже
+{"Price":1e37,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1.3}
+amalg_5
+Усмирение 5
+Амальгаметы появляются реже
+{"Price":1e47,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1.3}
+knife_1
+Сила 1
+Урон повышается
+{"Price":1e30,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":2,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1}
+knife_2
+Сила 2
+Урон повышается
+{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":2,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1}
+act_1
+Действие 1
+Вы отгоняете амальгаметов легче
+{"Price":1e28,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":2,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1}
+act_2
+Действие 2
+Вы отгоняете амальгаметов легче
+{"Price":1e34,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":5,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":1}
+act_3
+Действие 3
+Амальгаметы появляются невероятно редко
+{"Price":1e38,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AmalgametSpawnTimeMult":999}

@@ -25,6 +25,8 @@ namespace Sans
         public bool DoDTPS = true;
         public bool DoCheck = true;
 
+        public bool IsStopped = false;
+
         public void Reset()
         {
             ResetVal = new bool[4] { true, true, true, true };
@@ -48,6 +50,8 @@ namespace Sans
                     MainWindow.This?.ReloadCurrentUpgradePage();
                 }
             }
+
+            IsStopped = false;
         }
 
         public bool[] ResetVal = new bool[4] { false, false, false, false };
@@ -503,7 +507,7 @@ namespace Sans
 
         public void ChangeDT(double num)
         {
-            if (Save.save.OnLimit) return;
+            if (Save.save.OnLimit || IsStopped) return;
 
             Save.save.DT += num;
             Save.save.DT = Math.Max(0, Save.save.DT);
