@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Animation;
 using System.Runtime.CompilerServices;
+using Determination;
 
 namespace Sans
 {
@@ -160,6 +161,8 @@ namespace Sans
         DialogClass? DialogClass;
         public void StartFight(Enemy en)
         {
+            InFight = true;
+
             CalmingLevel.Width = 0;
             currEnemy = en;
             en.HP = en.MaxHP;
@@ -268,6 +271,8 @@ namespace Sans
 
             Obstacles.Background = Brushes.Black;
 
+            MainWindow.This?.musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
+
             WinThread = new Thread(delegate ()
             {
                 for (int i = 49; i >= 0; --i)
@@ -275,6 +280,7 @@ namespace Sans
                     MainWindow.DoCmd(delegate () { Obstacles.Opacity = 1.0 - i / 100.0; });
                     Thread.Sleep(10);
                 }
+                InFight = false;
                 MainWindow.DoCmd(delegate () { Obstacles.Background = Brushes.Transparent; });
                 MainWindow.DoCmd(delegate () { 
                     FightingScreen.Visibility = Visibility.Hidden; 
@@ -288,6 +294,7 @@ namespace Sans
                             Close();
                         }
                     }
+                    else Close();
                 });
             });
             WinThread.Start();
@@ -313,6 +320,8 @@ namespace Sans
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
             (ThreadStart)delegate ()
             {
+                MainWindow.This.musicPlayer.BackgroundMusicStop();
+
                 Field.Background = Brushes.Black;
                 NotInGameOver1.Visibility = Visibility.Hidden;
                 NotInGameOver2.Visibility = Visibility.Hidden;
@@ -359,6 +368,8 @@ namespace Sans
             });
         }
 
+        volatile bool fuckingkurwachecker = false;
+
         public void ObstaclesMovingCycle(Enemy en)
         {
             while (FightingScreen.Visibility == Visibility.Visible && !IsBattleClosed)
@@ -366,6 +377,8 @@ namespace Sans
                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
+                    fuckingkurwachecker = false;
+
                     if (Obstacles.Children.Count > 0)
                     {
                         List<Image> toRemove = new();
@@ -373,7 +386,8 @@ namespace Sans
                         {
                             if (Obstacles.Children[i] is Image o)
                             {
-                                o.Margin = new Thickness(o.Margin.Left, o.Margin.Top + 260.0 / en.speed, 0, 0);
+                                // ow fuck dont touch that anymore
+                                o.Margin = new Thickness(o.Margin.Left, o.Margin.Top + (260.0 / en.speed) / 1.5, 0, 0);
                                 if (currEnemy.Name == "AlphaGaster")
                                     o.Opacity = Math.Max(0.0, o.Opacity - 0.035);
                                 if (o.Margin.Top > 369.0)
@@ -390,13 +404,20 @@ namespace Sans
                         }
                         toRemove.ForEach(i => Obstacles.Children.Remove(i));
                     }
+
+                    fuckingkurwachecker = true;
                 });
 
+                while (!fuckingkurwachecker) {
+                };
+                
                 Thread.Sleep(20);
             }
         }
 
         private bool IsBattleClosed = false;
+
+        public static bool InFight = false;
 
         private int roundLenght = 6000;
         private int breakLenght = 3000;
@@ -620,6 +641,8 @@ namespace Sans
             gasterGlitchThread.Start();
         }
 
+        Thread? WindowGlitchThread;
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (DialogClass != null)
@@ -674,8 +697,24 @@ namespace Sans
                                 {
                                     AlphaGasterGlitch();
                                     currEnemy.difficulty += 1.0;
-                                }
 
+                                    WindowGlitchThread = new(delegate ()
+                                    {
+                                        for (int i = 9; i >= 0; --i)
+                                        {
+                                            MainWindow.DoCmd(delegate () {
+                                                Left *= 1.0 + 0.05 * (i / 10.0);
+                                            });
+                                            Thread.Sleep(100);
+                                            MainWindow.DoCmd(delegate () {
+                                                Left /= 1.0 + 0.05 * (i / 10.0);
+                                            });
+                                            Thread.Sleep(100);
+                                        }
+                                    });
+                                    WindowGlitchThread.IsBackground = true;
+                                    WindowGlitchThread.Start();
+                                }
 
                                 ActThread = new Thread(delegate ()
                                 {
@@ -744,6 +783,7 @@ namespace Sans
 
             No.Visibility = Visibility.Hidden;
             Yes.Visibility = Visibility.Hidden;
+            MainWindow.This.musicPlayer.StartBackgroundMusic(MusicEnable.he_must_die);
             StartFight(currEnemy);
         }
 
@@ -787,10 +827,11 @@ namespace Sans
         {
             clickedOnGaster = true;
 
+            MainWindow.This?.musicPlayer.StartBackgroundMusic(MusicEnable.you_must_die);
             Enemy en = new();
             en.Name = "Gaster";
             en.difficulty = 3.0;
-            en.speed = 30;
+            en.speed = 25;
             en.MaxHP = en.HP = 66;
 
             StartBattleThread = new Thread(delegate ()
@@ -818,8 +859,10 @@ namespace Sans
             Enemy en = new();
             en.Name = "SmthL";
             en.difficulty = 2.0 + Math.Min((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 7), 2);
-            en.speed = 40 - Math.Min((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 3), 10);
+            en.speed = 40.0 - Math.Min((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 3.0), 10.0);
             en.MaxHP = en.HP = Math.Max((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 20), 0) + 2;
+            
+            MainWindow.This?.musicPlayer.StartBackgroundMusic(MusicEnable.he_must_die);
 
             StartBattleThread = new Thread(delegate ()
             {
@@ -829,14 +872,23 @@ namespace Sans
             StartBattleThread.Start();
             StartBattleThread.IsBackground = true;
         }
-
+        /*
+        private void Log(string log)
+        {
+            StreamWriter sw = new("log.txt", true);
+            sw.WriteLine($"[{DateTime.Now}] " + log);
+            sw.Close();
+        }
+        */
         private void RA_Click(object sender, RoutedEventArgs e)
         {
             Enemy en = new();
             en.Name = "SmthR";
             en.difficulty = 2.0 + Math.Min((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 7), 2);
-            en.speed = 40 - Math.Min((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 3), 10);
+            en.speed = 40.0 - Math.Min((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 3.0), 10.0);
             en.MaxHP = en.HP = Math.Max((Convert.ToInt32(Math.Log10(Save.save.TotalDT + 1)) / 20), 0) + 2;
+            
+            MainWindow.This?.musicPlayer.StartBackgroundMusic(MusicEnable.he_must_die);
 
             StartBattleThread = new Thread(delegate ()
             {
@@ -927,11 +979,13 @@ namespace Sans
                         Thread.Sleep(100);
 
                         Enemy en = new();
-                        en.speed = 30;
+                        en.speed = 27;
                         en.difficulty = Math.Min(5, 2 + Save.save.LastBattleTimes / 2);
                         en.Name = "AlphaGaster";
                         en.MaxHP = en.HP = 666;
-                        MainWindow.DoCmd(delegate () { Save.save.LastBattleTimes++; Save.DoSave(MainWindow.This.LOG); StartFight(en); });
+                        MainWindow.DoCmd(delegate () {
+                            MainWindow.This?.musicPlayer.StartBackgroundMusic(MusicEnable.alpha);
+                            Save.save.LastBattleTimes++; Save.DoSave(MainWindow.This.LOG); StartFight(en); });
 
                         void AlphaCycle(Image part, double startspeed = 1.0)
                         {

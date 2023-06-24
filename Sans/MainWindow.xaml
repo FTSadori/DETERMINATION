@@ -174,7 +174,7 @@
 
         <Button FontSize="100" Style="{DynamicResource UTButtonStyle}"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
-                Name="StartButton"
+                Name="StartButton" MouseEnter="StartButton_MouseEnter" MouseLeave="StartButton_MouseEnter"
                 Margin="0 0 0 50" Click="Start_Click">
             Старт</Button>
 

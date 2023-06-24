@@ -88,7 +88,7 @@ namespace Sans
             for (int i = 0; i < TimeMachines.Count; ++i)
                 ReloadTimeMachine(i);
         }
-        public void BuyMachine(int num, bool buyMax)
+        public void BuyMachine(int num, bool buyMax, bool playsound = true)
         {
             double price = Math.Round(PriceFunction(Machines[num].BasePrice, Save.save.MachineCount[num], num));
             if (DTHandler.IfEnough(price) && price < BigNumsConverter.Infinity)
@@ -97,12 +97,14 @@ namespace Sans
                 ++Save.save.MachineCount[num];
                 ReloadMachine(num);
                 MainWindow.dthandler?.ReloadDTPS(Machines);
-            
-                if (buyMax) BuyMachine(num, buyMax);
+
+                if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.buy_sound);
+                if (buyMax) BuyMachine(num, buyMax, false);
             }
+            else if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.no);
         }
 
-        public void BuyTimeMachine(int num, bool buyMax)
+        public void BuyTimeMachine(int num, bool buyMax, bool playsound = true)
         {
             double price = Math.Round(PriceFunction(TimeMachines[num].BasePrice, Save.save.TimeMachineCount[num], num, false));
             if (RPHandler.IfEnough(price) && price < BigNumsConverter.Infinity)
@@ -114,8 +116,10 @@ namespace Sans
                 MainWindow.dthandler?.ReloadDTPS(Machines);
                 MainWindow.tickhandler?.ReloadCounter();
 
-                if (buyMax) BuyTimeMachine(num, buyMax);
+                if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.buy_sound);
+                if (buyMax) BuyTimeMachine(num, buyMax, false);
             }
+            else if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.no);
         }
     }
 }

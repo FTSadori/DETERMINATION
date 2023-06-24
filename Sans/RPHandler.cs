@@ -27,6 +27,8 @@ namespace Sans
 
         public bool IsStopped = false;
 
+
+
         public void Reset()
         {
             ResetVal = new bool[4] { true, true, true, true };
@@ -388,7 +390,7 @@ namespace Sans
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                     (ThreadStart)delegate ()
                     {
-                        if (!MainWindow.This.dialogClass.InDialog)
+                        if (!MainWindow.This.dialogClass.InDialog && !MainWindow.This.dialogClass.Occupied)
                         {
                             var list = DialogsEvent.Where(d => d.CheckCondition() && !Save.save.DialogsWas.Contains(d.DialogId))
                                 .ToList();
@@ -401,13 +403,13 @@ namespace Sans
                             }
                         }
 
-                        if (Save.save.TotalDT > 10000 && !Save.save.StatButton && !MainWindow.This.dialogClass.InDialog)
+                        if (Save.save.TotalDT > 10000 && !Save.save.StatButton && !MainWindow.This.dialogClass.InDialog && !MainWindow.This.dialogClass.Occupied)
                         {
                             MainWindow.This?.BeginNewDialog("_stat1", 500);
                             Save.save.StatButton = true;
                             MainWindow.This.Stat.Visibility = Visibility.Visible;
                         }
-                        if (Save.save.TotalDT > 100000 && !Save.save.RoomButton && !MainWindow.This.dialogClass.InDialog)
+                        if (Save.save.TotalDT > 100000 && !Save.save.RoomButton && !MainWindow.This.dialogClass.InDialog && !MainWindow.This.dialogClass.Occupied)
                         {
                             MainWindow.This?.BeginNewDialog("_room1", 500);
                             Save.save.RoomButton = true;
@@ -463,7 +465,10 @@ namespace Sans
                         TabOpenEvent.Where(n => n <= Save.save.TotalDT).ToList()
                             .ForEach(n =>
                             {
-                                MainWindow.This.ResetMenu.Width = MainWindow.This.menuTabsSize;
+                                if (Save.save.IsFullscreen)
+                                    MainWindow.This.ResetMenu.Width = MainWindow.This.menuTabsSize * Save.save.UIFullscreenScale;
+                                else
+                                    MainWindow.This.ResetMenu.Width = MainWindow.This.menuTabsSize * Save.save.UIScale;
                                 TabOpenEvent.Remove(n);
                                 Save.save.TryAddPages(new List<int>() { 6, 7 });
                             });

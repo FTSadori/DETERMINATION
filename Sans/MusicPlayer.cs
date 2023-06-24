@@ -10,14 +10,24 @@ namespace Determination
 {
     public enum MusicEnable
     {
+        new_start,
         im_here,
+        recall,
+        he_must_die,
+        you_must_die,
+        alpha
     }
 
     public class MusicPlayer
     {
         private static readonly Dictionary<MusicEnable, string> pathes = new()
         {
-            { MusicEnable.im_here, "Music/ost1 - I'm here.mp3" },
+            { MusicEnable.im_here, "Music/ost2 - I'm here.mp3" },
+            { MusicEnable.new_start, "Music/ost1 - New Start.mp3" },
+            { MusicEnable.recall, "Music/ost3 - Recall.mp3" },
+            { MusicEnable.he_must_die, "Music/ost4 - He Must Die.mp3" },
+            { MusicEnable.you_must_die, "Music/ost5 - You Must Die.mp3" },
+            { MusicEnable.alpha, "Music/ost6 - Look through your soul.mp3" },
         };
 
         private MediaPlayer musicPlayer = new();

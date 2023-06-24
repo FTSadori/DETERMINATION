@@ -67,8 +67,10 @@ namespace Sans
         public static RPHandler? rphandler;
         public static TickHandler? tickhandler;
 
-        private MusicPlayer musicPlayer = new();
-        private SoundPlayer soundPlayer = new();
+        public MusicPlayer musicPlayer = new();
+        public SoundPlayer soundPlayer = new();
+        public SoundPlayer hornSoundPlayer = new();
+        public SoundPlayer buttonSoundPlayer = new();
 
         Thread? manualNotifThread;
         Thread? checkForLimit;
@@ -78,7 +80,6 @@ namespace Sans
         bool UseMaxBuy = false;
 
         double UIScale = 1.0;
-        double UIScaleFullscreen = 1.15;
 
         public static void DoCmd(ThreadStart th)
         {
@@ -88,6 +89,8 @@ namespace Sans
         public DialogClass dialogClass;
 
         public bool canLookAtRoom = true;
+
+        Thread? startedThread;
 
         public MainWindow()
         {
@@ -128,14 +131,15 @@ namespace Sans
                                 Room.Background = Brushes.Transparent;
                             else
                                 Room.Background = Brushes.DarkRed;
+                            if (!dialogClass.InDialog && !Room256.InFight) hornSoundPlayer.PlaySound(SoundEnable.horn);
                         }
                         else
                             Room.Background = Brushes.Transparent;
                     });
-                    Thread.Sleep(500);
+                    Thread.Sleep(860);
                     i++;
                     j = (j + 1) % 2;
-                    if (i == 100)
+                    if (i == 50)
                     {
                         i = 0;
                         DoCmd(delegate () { Save.DoSave(LOG); });
@@ -237,6 +241,23 @@ namespace Sans
                 MinWidth = ReallyMainGrid.Width;
             }
 
+            if (!Save.save.Started)
+            {
+                Save.save.Started = true;
+                startedThread = new(delegate () {
+                    Thread.Sleep(100);
+                    DoCmd(delegate ()
+                    {
+                        UIless_Click(new(), new());
+                        UIless_Click(new(), new());
+                        UIless_Click(new(), new());
+                        UIless_Click(new(), new());
+                    });
+                });
+                startedThread.IsBackground = true;
+                startedThread.Start();
+            }
+
             if (Save.save.WindowHeight != 0.0)
             {
                 SizeToContent = SizeToContent.Manual;
@@ -291,6 +312,8 @@ namespace Sans
                             AmalgametHandler.IsActive = false;
                             UltraBlackScreen.Visibility = Visibility.Visible;
 
+                            musicPlayer.BackgroundMusicStop();
+
                             Room256 room256 = new();
                             room256.LastBattle();
                             room256.ShowDialog();
@@ -301,10 +324,6 @@ namespace Sans
                 lastBattle.Start();
                 lastBattle.IsBackground = true;
             }
-
-            //todo clean up
-            musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
-
         }
 
         Thread? lastBattle;
@@ -439,7 +458,7 @@ namespace Sans
             bgThread.IsBackground = true;
         }
 
-        private void SetStartScreen()
+        private void SetStartScreen(bool afterreset = false)
         {
             if (Save.save.TutorialPassed)
             {
@@ -451,10 +470,17 @@ namespace Sans
 
                 DTGain.Visibility = Visibility.Visible;
 
-                MachineMenu.Width = menuTabsSize;
-                UpgradesMenu.Width = menuTabsSize;
+                MachineMenu.Width = menuTabsSize * UIScale;
+                UpgradesMenu.Width = menuTabsSize * UIScale;
                 MachineGrid.Visibility = Visibility.Visible;
                 InfoButton.Visibility = Visibility.Visible;
+
+                if (Save.save.OnLimit && afterreset)
+                {
+                    Save.save.OnLimit = false;
+                }
+                else
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
 
                 ReloadMachineTab();
 
@@ -504,6 +530,7 @@ namespace Sans
                 if (Save.save.CurDialog == "" && Save.save.LastDialog == "")
                     BeginNewDialog("_start", 0);
                 else BeginNewDialog((Save.save.CurDialog != "") ? Save.save.CurDialog : Save.save.LastDialog, 1000);
+                musicPlayer.StartBackgroundMusic(MusicEnable.new_start);
             }
             else
             {
@@ -565,10 +592,14 @@ namespace Sans
                     room256.ShowDialog();
                     BeginNewDialog("_room2", 0);
                     break;
+                case "_room2":
+                    dialogClass.Occupied = false; 
+                    break;
                 case "_stat1":
                     break;
                 case "_run_away0":
                 case "_start_tutorial_r":
+                    //musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     SetBGAnimation("MachineBG");
                     break;
                 case "_second_machine":
@@ -576,15 +607,18 @@ namespace Sans
                     break;
                 case "_second_machine2":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    dialogClass.Occupied = false;
                     break;
                 case "_reset_av":
                     BeginNewDialog("_reset_av2", 100);
                     break;
                 case "_reset_av2":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_reset_black":
                     BeginNewDialog("_dream1", 100);
+                    dialogClass.Occupied = false;
                     break;
                 case "_dream1":
                     BeginNewDialog("_dream_black1", 100);
@@ -594,6 +628,7 @@ namespace Sans
                     break;
                 case "_dream_wake_up1":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_dream_start2":
                     BeginNewDialog("_dream2", 100);
@@ -603,6 +638,7 @@ namespace Sans
                     break;
                 case "_dream_wake_up2":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_dream_start3n":
                     BeginNewDialog("_chara3n", 100);
@@ -611,8 +647,11 @@ namespace Sans
                 case "_chara3i":
                 case "_chara3s":
                 case "_chara4n2":
-                case "_chara4i2":
                 case "_chara4s2":
+                    BeginNewDialog("_dream_wake_up2", 100);
+                    break;
+                case "_chara4i2":
+                    musicPlayer.BackgroundMusicStop();
                     BeginNewDialog("_dream_wake_up2", 100);
                     break;
                 case "_dream_start3i":
@@ -641,15 +680,18 @@ namespace Sans
                     break;
                 case "_time1":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_time2":
                     BeginNewDialog("_timebreak", 100);
                     break;
                 case "_timebreak":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_amalgam":
                     BlackScreen.Visibility = Visibility.Hidden;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_6.6e66_n1":
                     BeginNewDialog("_6.6e66_n2", 100);
@@ -674,6 +716,7 @@ namespace Sans
                     break;
                 case "_end_n1":
                     File.Delete("Saves/s0.txt");
+                    deleteSaveFile = true;
                     Close(false);
                     break;
                 case "_6.6e66_i1":
@@ -696,6 +739,7 @@ namespace Sans
                     break;
                 case "_end_i3":
                     File.Delete("Saves/s0.txt");
+                    deleteSaveFile = true;
                     Close(false);
                     break;
                 case "_he_notice":
@@ -716,6 +760,7 @@ namespace Sans
 
         public void Gaster()
         {
+            musicPlayer.BackgroundMusicStop();
             MessageBox.Show("Будь осторожен", "????", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             AmalgametHandler.IsActive = false;
@@ -744,6 +789,7 @@ namespace Sans
             switch (key)
             {
                 case "_start":
+                    musicPlayer.StartBackgroundMusic(MusicEnable.new_start);
                     SetCGAnimation("man_stand");
                     break;
                 case "_start_ring-ring":
@@ -765,16 +811,23 @@ namespace Sans
                     DTGain.Visibility = Visibility.Visible;
                     break;
                 case "_start_tutorial3":
-                    MachineMenu.Width = menuTabsSize;
+                    MachineMenu.Width = menuTabsSize * UIScale;
                     MachineGrid.Visibility = Visibility.Visible;
                     break;
                 case "_start_tutorial4":
-                    UpgradesMenu.Width = menuTabsSize;
+                    UpgradesMenu.Width = menuTabsSize * UIScale;
                     DTpscounter.Visibility = Visibility.Visible;
                     canLookAtRoom = true;
                     break;
+                case "_room1":
+                    dialogClass.Occupied = true;
+                    break;
                 case "_run_away0":
                     canLookAtRoom = true;
+                    musicPlayer.BackgroundMusicStop();
+                    break;
+                case "_start_tutorial_r":
+                    musicPlayer.BackgroundMusicStop();
                     break;
                 case "_idling_1":
                 case "_idling_2":
@@ -784,9 +837,12 @@ namespace Sans
                 case "_destroyed_2":
                 case "_destroyed_3":
                 case "_destroyed_4":
-                    DoCmd(delegate () { 
+                    DoCmd(delegate () {
+                        musicPlayer.BackgroundMusicStop();
+
                         BlackScreen.Visibility = Visibility.Visible;
                         SetOnBlackAnimation("nothing");
+                        dialogClass.Occupied = true;
                     });
                     break;
                 case "_idling_end":
@@ -803,30 +859,47 @@ namespace Sans
                     gameClosingThread.Start();
                     gameClosingThread.IsBackground = true;
                     break;
+                case "_second_machine":
+                    dialogClass.Occupied = true; 
+                    break;
                 case "_second_machine2":
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("Paper");
                     break;
                 case "_reset_av":
+                    musicPlayer.BackgroundMusicStop();
+
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("nothing");
+                    staticRoom?.Win(true);
+                    Room256.amHandler.AmalgamPlace = 0;
+                    Room256.amHandler.AmalgamWalk = 0;
+                    dialogClass.Occupied = true;
                     break;
                 case "_reset_av2":
                     SetOnBlackAnimation("SStation");
                     break;
                 case "_reset_black":
+                    musicPlayer.BackgroundMusicStop();
+
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("nothing");
                     break;
                 case "_dream1":
                 case "_dream2":
+                    musicPlayer.StartBackgroundMusic(MusicEnable.recall);
                     SetOnBlackAnimation("Chara");
                     break;
                 case "_dream_black1":
+                    musicPlayer.BackgroundMusicStop();
                     SetOnBlackAnimation("nothing");
                     break;
                 case "_dream_wake_up1":
+                    SetOnBlackAnimation("nothing");
+                    break;
                 case "_dream_wake_up2":
+                    musicPlayer.BackgroundMusicStop();
+
                     SetOnBlackAnimation("nothing");
                     break;
                 case "_dream_start2":
@@ -836,6 +909,8 @@ namespace Sans
                 case "_dream_start4n":
                 case "_dream_start4i":
                 case "_dream_start4s":
+                    musicPlayer.BackgroundMusicStop();
+
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("nothing");
                     break;
@@ -843,6 +918,7 @@ namespace Sans
                 case "_time2":
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("Time");
+                    musicPlayer.StartBackgroundMusic(MusicEnable.recall);
                     break;
                 case "_timebreak":
                     SetOnBlackAnimation("TimeB");
@@ -852,6 +928,7 @@ namespace Sans
                     break;
                 case "_chara3s":
                 case "_chara4s":
+                    musicPlayer.StartBackgroundMusic(MusicEnable.recall);
                     SetOnBlackAnimation("Chara");
                     break;
                 case "_chara4s2":
@@ -861,44 +938,56 @@ namespace Sans
                 case "_chara3i":
                 case "_chara4i":
                 case "_chara4n":
+                    musicPlayer.StartBackgroundMusic(MusicEnable.recall);
                     SetOnBlackAnimation("CharaE");
                     break;
                 case "_chara4i2":
                     SetOnBlackAnimation("SheI");
+                    musicPlayer.BackgroundMusicStop();
                     break;
                 case "_amalgam":
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("Chung");
+                    musicPlayer.StartBackgroundMusic(MusicEnable.he_must_die);
                     break;
                 case "_6.6e66_n1":
                 case "_6.6e66_i1":
                 case "_he_notice":
+                    staticRoom?.Win(true);
                     confirmClosing = true;
+                    Room256.amHandler.AmalgamPlace = 0;
+                    Room256.amHandler.AmalgamWalk = 0;
                     break;
                 case "_6.6e66_n2":
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("nothing");
+                    musicPlayer.BackgroundMusicStop();
                     break;
                 case "_6.6e66_n3":
                     SetOnBlackAnimation("phone");
+                    musicPlayer.StartBackgroundMusic(MusicEnable.new_start);
                     break;
                 case "_6.6e66_n4":
                     SetOnBlackAnimation("Messages");
                     break;
                 case "_6.6e66_n5":
                     SetOnBlackAnimation("MessageC");
+                    musicPlayer.BackgroundMusicStop();
                     break;
                 case "_6.6e66_n6":
                     SetOnBlackAnimation("nothing");
                     break;
                 case "_6.6e66_n7":
                     SetOnBlackAnimation("He");
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     break;
                 case "_end_n1":
+                    musicPlayer.BackgroundMusicStop();
                     SetOnBlackAnimation("nothing");
                     break;
                 case "_6.6e66_i2":
                     BlackScreen.Visibility = Visibility.Visible;
+                    musicPlayer.BackgroundMusicStop();
                     SetOnBlackAnimation("nothing");
                     break;
                 case "_6.6e66_i3":
@@ -907,10 +996,12 @@ namespace Sans
                 case "_6.6e66_i4":
                     BlackScreen.Visibility = Visibility.Hidden;
                     Save.save.OpenedUpgrades["Все счастливы"] = UpgradeMode.Opened;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     ReloadCurrentUpgradePage();
                     break;
                 case "_you_cant":
                     BlackScreen.Visibility = Visibility.Visible;
+                    musicPlayer.StartBackgroundMusic(MusicEnable.recall);
                     SetOnBlackAnimation("YouCant");
                     break;
                 case "_end_i1":
@@ -920,11 +1011,13 @@ namespace Sans
                     SetOnBlackAnimation("He");
                     break;
                 case "_end_i3":
+                    musicPlayer.BackgroundMusicStop();
                     SetOnBlackAnimation("SheI");
                     break;
                 case "_he_notice2":
                     BlackScreen.Visibility = Visibility.Visible;
                     SetOnBlackAnimation("He");
+                    musicPlayer.BackgroundMusicStop();
                     break;
             }
 
@@ -934,9 +1027,11 @@ namespace Sans
 
         Thread? gameClosingThread;
 
+        bool deleteSaveFile = false;
+
         private void Window_Closed(object sender, EventArgs e)
         {
-            if (Room256.amHandler != null && Room256.amHandler.AmalgamPlace != 0)
+            if (!deleteSaveFile && Room256.amHandler != null && Room256.amHandler.AmalgamPlace != 0)
             {
                 Save.save.RanAway = true;
                 Save.DoSave(LOG);
@@ -1015,6 +1110,7 @@ namespace Sans
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            buttonSoundPlayer.PlaySound(SoundEnable.reset);
             StartButton.Visibility = Visibility.Hidden;
             BeginNewDialog("_start", 500);
             SetBGAnimation("Screen");
@@ -1050,6 +1146,9 @@ namespace Sans
                 BeginNewDialog("_i_refuse", 0);
                 return;
             }
+
+            //Gaster();
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
 
             Save.save.Clicks += Convert.ToInt32(1 * Math.Max(1.0, EXPBoost));
             Save.save.MaxClicks = Math.Max(Save.save.MaxClicks, Save.save.Clicks);
@@ -1164,7 +1263,12 @@ namespace Sans
                 }
                 else
                 {
-                    if (!DTHandler.IfEnough(upgrade.Price)) return;
+                    if (!DTHandler.IfEnough(upgrade.Price))
+                    {
+                        soundPlayer.PlaySound(SoundEnable.no);
+                        return;
+                    }
+                    soundPlayer.PlaySound(SoundEnable.buy_sound);
 
                     dthandler?.ChangeDT(-upgrade.Price);
 
@@ -1194,6 +1298,8 @@ namespace Sans
             newcloserbutton.Style = (Style)this.TryFindResource("UpgradeClose");
             newcloserbutton.Click += delegate (object sender, RoutedEventArgs e)
             {
+                soundPlayer.PlaySound(SoundEnable.vinyl_short);
+
                 UpgradeBubble.Visibility = Visibility.Visible;
                 CurrentUpgradeDesc.Text = upgrade.GetDescription();
                 CurrentUpgradeName.Text = upgrade.GetUpgradeName();
@@ -1230,6 +1336,8 @@ namespace Sans
             BeginNewDialog("_you_cant", 0);
         }
         
+        private void MachinesBuyClick(object sender, RoutedEventArgs e) => soundPlayer.PlaySound(SoundEnable.buy_sound);
+
         private void BuyMachine1_Click(object sender, RoutedEventArgs e) => machinesHandler.BuyMachine(0, UseMaxBuy);
         private void BuyMachine2_Click(object sender, RoutedEventArgs e) => machinesHandler.BuyMachine(1, UseMaxBuy);
         private void BuyMachine3_Click(object sender, RoutedEventArgs e) => machinesHandler.BuyMachine(2, UseMaxBuy);
@@ -1243,26 +1351,31 @@ namespace Sans
         private void CloseUpgradeBubble_Click(object sender, RoutedEventArgs e)
         {
             UpgradeBubble.Visibility = Visibility.Hidden;
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
         }
 
         private void GoNextButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.short_kick);
             OpenUpgradePage(currentUpgradePage + 1);
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.short_kick);
             OpenUpgradePage(currentUpgradePage - 1);
         }
 
         private void MachineMenu_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             UpgradesGrid.Visibility = TimeMachineGrid.Visibility = ResetGrid.Visibility = Visibility.Hidden;
             MachineGrid.Visibility = Visibility.Visible;
         }
 
         private void UpgradesMenu_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             MachineGrid.Visibility = TimeMachineGrid.Visibility = ResetGrid.Visibility = Visibility.Hidden;
             UpgradesGrid.Visibility = Visibility.Visible;
             ReloadCurrentUpgradePage();
@@ -1270,12 +1383,14 @@ namespace Sans
 
         private void TimeMenu_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             MachineGrid.Visibility = UpgradesGrid.Visibility = ResetGrid.Visibility = Visibility.Hidden;
             TimeMachineGrid.Visibility = Visibility.Visible;
         }
 
         private void ResetMenu_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             MachineGrid.Visibility = UpgradesGrid.Visibility = TimeMachineGrid.Visibility = Visibility.Hidden;
             ResetGrid.Visibility = Visibility.Visible;
         }
@@ -1285,6 +1400,7 @@ namespace Sans
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             dthandler.IsStopped = true;
+            buttonSoundPlayer.PlaySound(SoundEnable.reset);
 
             ResetAnimationThread = new(delegate () {
                 DoCmd(delegate () {
@@ -1342,6 +1458,8 @@ namespace Sans
 
                     if (Save.save.OnLimit)
                     {
+                        musicPlayer.BackgroundMusicStop();
+
                         switch (Save.save.LimitLvl)
                         {
                             case 1:
@@ -1373,11 +1491,10 @@ namespace Sans
                                     BeginNewDialog("_dream_start4n", 0);
                                 break;
                         }
-                        Save.save.OnLimit = false;
                     }
 
                     MachineMenu_Click(new object(), new RoutedEventArgs());
-                    SetStartScreen();
+                    SetStartScreen(true);
                 });
                 Thread.Sleep(500);
                 while (true)
@@ -1409,6 +1526,7 @@ namespace Sans
         {
             if (Save.save.TutorialPassed && canLookAtRoom && Save.save.RoomButton)
             {
+                soundPlayer.PlaySound(SoundEnable.vinyl_short);
                 //Room256 room256 = new();
                 //room256.ShowDialog();
                 staticRoom = new();
@@ -1419,6 +1537,7 @@ namespace Sans
 
         private void Stat_Click(object sender, RoutedEventArgs e)
         {
+            buttonSoundPlayer.PlaySound(SoundEnable.vinyl_short);
             if (dialogClass.InDialog) return;
             try
             {
@@ -1552,6 +1671,7 @@ namespace Sans
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             SettingsBubble.Visibility = Visibility.Visible;
             //todo back
             //SetUIScale(UIScale);
@@ -1583,6 +1703,7 @@ namespace Sans
             if (UIScale > 0.51) UIScale -= 0.05;
             SizeToContent = SizeToContent.Manual;
             SetScale(old, UIScale, true);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void UIbigger_Click(object sender, RoutedEventArgs e)
@@ -1591,16 +1712,19 @@ namespace Sans
             if (UIScale < 1.99) UIScale += 0.05;
             SizeToContent = SizeToContent.Manual;
             SetScale(old, UIScale, true);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void CloseSettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             SettingsBubble.Visibility = Visibility.Hidden;
             DarkerScreen.Visibility = Visibility.Hidden;
         }
 
         private void FullscreenButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.short_kick);
             Fullscreen();
             if (FullscreenButton.Content.ToString() == "выкл")
                 FullscreenButton.Content = "вкл";
@@ -1610,6 +1734,7 @@ namespace Sans
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             ManualGrid.Visibility = Visibility.Visible;
             ShowManualPage(currentManualPage);
             DarkerScreen.Visibility = Visibility.Visible;
@@ -1619,16 +1744,19 @@ namespace Sans
         {
             ManualGrid.Visibility = Visibility.Hidden;
             DarkerScreen.Visibility = Visibility.Hidden;
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
         }
 
         private void PrevPageButton_Click(object sender, RoutedEventArgs e)
         {
             ShowManualPage(currentManualPage - 2);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
             ShowManualPage(currentManualPage + 2);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private bool confirmClosing = false;
@@ -1654,14 +1782,17 @@ namespace Sans
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             Save.DoSave(LOG);
         }
 
         private void DeleteSaveButton_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
             var ans = MessageBox.Show("Удалить сохранение?", "????", MessageBoxButton.YesNo);
             if (ans == MessageBoxResult.Yes)
             {
+                deleteSaveFile = true;
                 File.Delete("Saves/s0.txt");
                 Close(false);
             }
@@ -1676,6 +1807,8 @@ namespace Sans
 
         private void BuyMaxUpgrades_Click(object sender, RoutedEventArgs e)
         {
+            soundPlayer.PlaySound(SoundEnable.vinyl_short);
+
             var openedUpgradesNames = Save.save.OpenedUpgrades.Where(p => p.Value == UpgradeMode.Opened)
                 .ToDictionary(x => x.Key, x => x.Value);
             List<Upgrade> openedUpgrades = new();
@@ -1701,6 +1834,7 @@ namespace Sans
         private void SetSoundVolume(double volume)
         {
             soundPlayer.Volume = volume;
+            hornSoundPlayer.Volume = volume;
             SoundPercent.Text = Convert.ToInt32(soundPlayer.Volume * 100.0).ToString() + "%";
             Save.save.SoundVolume = soundPlayer.Volume;
         }
@@ -1714,21 +1848,25 @@ namespace Sans
         private void Soundbigger_Click(object sender, RoutedEventArgs e)
         {
             SetSoundVolume(soundPlayer.Volume + 0.05);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void Soundless_Click(object sender, RoutedEventArgs e)
         {
             SetSoundVolume(soundPlayer.Volume - 0.05);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void Musicless_Click(object sender, RoutedEventArgs e)
         {
             SetMusicVolume(musicPlayer.Volume - 0.05);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void Musicbigger_Click(object sender, RoutedEventArgs e)
         {
             SetMusicVolume(musicPlayer.Volume + 0.05);
+            soundPlayer.PlaySound(SoundEnable.short_kick);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -1737,6 +1875,11 @@ namespace Sans
             
             Save.save.WindowHeight = Height;
             Save.save.WindowWidth = Width;
+        }
+
+        private void StartButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            soundPlayer.PlaySound(SoundEnable.start_button_enter);
         }
     }
 }

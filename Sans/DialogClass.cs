@@ -108,6 +108,8 @@ namespace Sans
         public bool IsPrinting { get; private set; } = false;
         public bool InDialog { get; private set; } = false;
 
+        public bool Occupied { get; set; } = false;
+
         private static Dictionary<string, List<Dialog>> AllDialogs = new();
 
         private static string Path = $"pack://application:,,,/Text/dialogs.txt";
@@ -221,6 +223,7 @@ namespace Sans
                 }
                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate () {
+                    MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.voice);
                     dtDialogText.Text += c;
                 });
                 if (dialog_toend)

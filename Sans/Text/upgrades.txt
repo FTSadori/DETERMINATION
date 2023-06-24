@@ -397,11 +397,11 @@ infinity_1
 infinity_2
 [Вечное] Бесконечность 2
 Каждую секунду число решимости растет ещё на 5%
-{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":4}
+{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":5}
 infinity_3
 [Вечное] Бесконечность 3
 Каждую секунду число решимости растет ещё на 10%
-{"Price":1e50,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":6}
+{"Price":1e50,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":10}
 goodending
 Все счастливы
 Купи это и все будут счастливы

@@ -24,7 +24,7 @@ namespace Sans
 
         static public bool IsActive = false;
 
-        public const int AvgSpawnTime = 10;//5 * 60 * 1000;
+        public const int AvgSpawnTime = 5 * 60 * 1000;
 
         static public double AmalgametTimeIncreaser = 1.0;
 

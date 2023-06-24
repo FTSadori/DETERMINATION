@@ -105,6 +105,8 @@ namespace Sans
             }
         }
 
+        public bool Started { get; set; } = false;
+
         public string CurDialog { get; set; } = "";
         public string LastDialog { get; set; } = "";
         public int RunAwayTimes { get; set; } = 0;
