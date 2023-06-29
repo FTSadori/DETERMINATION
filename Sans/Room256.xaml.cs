@@ -76,6 +76,8 @@ namespace Sans
 
                 ActButtonText.Text = "[A] Attack";
             }
+
+            CalmingText.Text = Translator.Dictionary[TWord.Room_Calming];
         }
 
         private void Checker()

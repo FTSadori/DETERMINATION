@@ -14,6 +14,11 @@ namespace Sans
         public static List<Upgrade> UpgradesList = new();
         private static string Path = $"pack://application:,,,/Text/upgrades.txt";
 
+        public static string GetName(string iconName)
+        {
+            return UpgradesList.Where(u => u.GetIconName() == iconName).First().GetUpgradeName();
+        }
+
         public static void ReadUpgrades()
         {
             StreamReader sr = new(Application.GetResourceStream(new Uri(Path)).Stream);

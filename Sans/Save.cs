@@ -51,7 +51,7 @@ namespace Sans
                 Thread aaa = new Thread((ThreadStart)delegate () {
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                     (ThreadStart)delegate () {
-                        log.Text = "Сохранение...";
+                        log.Text = Translator.Dictionary[TWord.Log_Saving];
                     });
                     Thread.Sleep(200);
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
@@ -160,5 +160,7 @@ namespace Sans
 
         public double WindowHeight { get; set; } = 0.0;
         public double WindowWidth { get; set; } = 0.0;
+
+        public bool NeedToCheck { get; set; } = false;
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sans"
         mc:Ignorable="d" Closed="Window_Closed" Closing="Window_Closing"
-        Title="???" SizeToContent="WidthAndHeight" Height="750" Width="1000"
+        Title="Determination" SizeToContent="WidthAndHeight" Height="750" Width="1000"
         KeyDown="Window_KeyDown" KeyUp="Window_KeyUp"
         SizeChanged="Window_SizeChanged">
     <Window.Resources>
@@ -56,7 +56,7 @@
             </StackPanel>
             <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="CloseUpgradeBubble"
                     Style="{DynamicResource UTButtonStyle}" FontSize="35"
-                    Margin="20" Click="CloseUpgradeBubble_Click">Back</Button>
+                    Margin="20" Click="CloseUpgradeBubble_Click">Назад</Button>
             <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="BuyUpgradeBubble"
                     Style="{DynamicResource UTButtonStyle}" FontSize="35"
                     Margin="20">Купить</Button>

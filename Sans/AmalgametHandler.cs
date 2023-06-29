@@ -23,10 +23,10 @@ namespace Sans
         static public bool DESTROYED = false;
 
         static public bool IsActive = false;
+        static public double AmalgametTimeIncreaser = 1.0;
 
         public const int AvgSpawnTime = 5 * 60 * 1000;
 
-        static public double AmalgametTimeIncreaser = 1.0;
 
         private int GetAverageTimeToSpawn()
         {

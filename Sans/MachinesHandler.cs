@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Determination;
 
 namespace Sans
 {
@@ -46,18 +47,18 @@ namespace Sans
 
         public static double PriceFunction(double start, int x, double lvl, bool startFromZero = true)
             => start * (Math.Pow(1.3 + lvl * PriceRaiseCoef, x) - (startFromZero ? 1.0 : 0.0));
-        
+
         public void ReloadMachine(int num)
         {
             Machine m = Machines[num];
 
             m.BuyButton.Content = BigNumsConverter.GetInPrettyENotation(
                 PriceFunction(m.BasePrice, Save.save.MachineCount[num], num)
-                ) + " реш.";
-            m.Count.Text = Save.save.MachineCount[num] + " улучшений";
+                ) + " " + Translator.Dictionary[TWord.DTPrice];
+            m.Count.Text = Save.save.MachineCount[num] + " " + Translator.Dictionary[TWord.Machine_Upgrades];
             m.Power.Text = $"P{num + 1}: "
                 + BigNumsConverter.GetInPrettyENotation(Save.save.MachineCount[num] * m.Multipicator, 999)
-                + ((num == 0) ? " реш/с" : $"P{num}");
+                + ((num == 0) ? $" {Translator.Dictionary[TWord.Machine_DTperSecond]}" : $"P{num}");
 
             MainWindow.dthandler?.ReloadDTPS(Machines);
         }
@@ -68,11 +69,11 @@ namespace Sans
 
             m.BuyButton.Content = BigNumsConverter.GetInPrettyENotation(
                 PriceFunction(m.BasePrice, Save.save.TimeMachineCount[num], num, false)
-                ) + " ОС";
-            m.Count.Text = Save.save.TimeMachineCount[num] + " улучшений";
+                ) + " " + Translator.Dictionary[TWord.RPPrice];
+            m.Count.Text = Save.save.TimeMachineCount[num] + " " + Translator.Dictionary[TWord.Machine_Upgrades];
             m.Power.Text = $"P{num + 1}: "
                 + BigNumsConverter.GetInPrettyENotation(Save.save.TimeMachinePowers[num] * TimeMachines[num].Multipicator, 999)
-                + ((num == 0) ? " тик/с" : $" КВ{num}/с");
+                + ((num == 0) ? $" {Translator.Dictionary[TWord.TicksPerSecond]}" : $" {Translator.Dictionary[TWord.TimeMachine_TM]}{num}{Translator.Dictionary[TWord.TimeMachine_PerSecond]}");
 
             MainWindow.dthandler?.ReloadDTPS(Machines);
         }
@@ -98,10 +99,10 @@ namespace Sans
                 ReloadMachine(num);
                 MainWindow.dthandler?.ReloadDTPS(Machines);
 
-                if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.buy_sound);
+                if (playsound) MainWindow.This.soundPlayer.PlaySound(SoundEnable.buy_sound);
                 if (buyMax) BuyMachine(num, buyMax, false);
             }
-            else if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.no);
+            else if (playsound) MainWindow.This.soundPlayer.PlaySound(SoundEnable.no);
         }
 
         public void BuyTimeMachine(int num, bool buyMax, bool playsound = true)
@@ -116,10 +117,10 @@ namespace Sans
                 MainWindow.dthandler?.ReloadDTPS(Machines);
                 MainWindow.tickhandler?.ReloadCounter();
 
-                if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.buy_sound);
+                if (playsound) MainWindow.This.soundPlayer.PlaySound(SoundEnable.buy_sound);
                 if (buyMax) BuyTimeMachine(num, buyMax, false);
             }
-            else if (playsound) MainWindow.This.soundPlayer.PlaySound(Determination.SoundEnable.no);
+            else if (playsound) MainWindow.This.soundPlayer.PlaySound(SoundEnable.no);
         }
     }
 }

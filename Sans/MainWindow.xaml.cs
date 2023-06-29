@@ -92,18 +92,22 @@ namespace Sans
 
         Thread? startedThread;
 
+        Thread? checkZeroThread;
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
             This = this;
 
+            Upgrades.ReadUpgrades();
             dialogClass = new(DTDialogBoxText, DTDialogBox);
             dthandler = new(DTcounter, DTpscounter);
             rphandler = new(RPcounter, RPGainCounter);
             tickhandler = new(Tickcounter);
             DialogClass.LoadDialogs();
-            Upgrades.ReadUpgrades();
+            Translator.LoadTranslates();
+            UseTranslates();
 
             StartBGThread();
 
@@ -163,7 +167,7 @@ namespace Sans
                 machinesHandler.ReloadTimeMachines();
 
                 if (Save.save.OnLimit)
-                    DTcounter.Text = "Предел реш.";
+                    DTcounter.Text = Translator.Dictionary[TWord.C_Limit];
 
                 CheckIfMachinesAreFull();
 
@@ -223,7 +227,7 @@ namespace Sans
                                 Save.save.TryAddPages(new() { 10, 11 });
                                 ++Save.save.LimitLvl;
                                 Save.save.OnLimit = true;
-                                DTcounter.Text = "Предел реш.";
+                                DTcounter.Text = Translator.Dictionary[TWord.C_Limit];
                             });
                         }
                     }
@@ -300,10 +304,10 @@ namespace Sans
                             else
                             {
                                 StreamWriter sw = new("Chara.txt");
-                                sw.WriteLine("* Скорее! Надо выбираться!");
+                                sw.WriteLine(Translator.Dictionary[TWord.CharaTxt]);
                                 sw.Close();
                                 sw = new("Sans.txt");
-                                sw.WriteLine("* ...");
+                                sw.WriteLine(Translator.Dictionary[TWord.SansTxt]);
                                 sw.Close();
                             }
                         }
@@ -331,6 +335,38 @@ namespace Sans
         List<ManualPage> allManualPages = new();
         List<ManualPage> manualPages = new();
         int currentManualPage = 0;
+
+        public void UseTranslates()
+        {
+            StartButton.Content = Translator.Dictionary[TWord.Start];
+            SettingsTitle.Text = Translator.Dictionary[TWord.S_Settings];
+            SaveSettingsText.Text = Translator.Dictionary[TWord.S_Saving];
+            SaveButton.Content = Translator.Dictionary[TWord.S_Save];
+            DeleteSaveButton.Content = Translator.Dictionary[TWord.S_DeleteSave];
+            UISettingsText.Text = Translator.Dictionary[TWord.S_Interface];
+            UISizeText.Text = Translator.Dictionary[TWord.S_UISize];
+            OnFullscreenText.Text = Translator.Dictionary[TWord.S_Fullscreen];
+            FullscreenButton.Content = Translator.Dictionary[TWord.S_Off];
+            SoundSettingsText.Text = Translator.Dictionary[TWord.S_MusicAndSounds];
+            SoundVolumeLabel.Text = Translator.Dictionary[TWord.S_SoundsVolume];
+            MusicVolumeLabel.Text = Translator.Dictionary[TWord.S_MusicVolume];
+            ExitGameButton.Content = Translator.Dictionary[TWord.S_ExitGame];
+            CloseSettingsButton.Content = Translator.Dictionary[TWord.Back];
+            CloseUpgradeBubble.Content = Translator.Dictionary[TWord.Back];
+            Machine1Name.Text = Translator.Dictionary[TWord.Machine_MachineName] + " 1";
+            Machine2Name.Text = Translator.Dictionary[TWord.Machine_MachineName] + " 2";
+            Machine3Name.Text = Translator.Dictionary[TWord.Machine_MachineName] + " 3";
+            Machine4Name.Text = Translator.Dictionary[TWord.Machine_MachineName] + " 4";
+            TimeMachine1Name.Text = Translator.Dictionary[TWord.TimeMachine_MachineName] + " 1";
+            TimeMachine2Name.Text = Translator.Dictionary[TWord.TimeMachine_MachineName] + " 2";
+            TimeMachine3Name.Text = Translator.Dictionary[TWord.TimeMachine_MachineName] + " 3";
+            TimeMachine4Name.Text = Translator.Dictionary[TWord.TimeMachine_MachineName] + " 4";
+            ResetButton.Content = Translator.Dictionary[TWord.ResetButton];
+            ResetMenu.Content = Translator.Dictionary[TWord.Menu_Reset];
+            UpgradesMenu.Content = Translator.Dictionary[TWord.Menu_Upgrades];
+            MachineMenu.Content = Translator.Dictionary[TWord.Menu_Machine];
+            TimeMachineMenu.Content = Translator.Dictionary[TWord.Menu_TimeMachine];
+        }
 
         public void CheckIfMachinesAreFull()
         {
@@ -381,17 +417,14 @@ namespace Sans
             if (!Directory.Exists("Boat")) return;
 
                 List<string> AllTraLaLals = new() {
-                "* Тра-ла-ла, никогда не доверяй большим числам...",
-                "* Тра-ла-ла, не бездействуй, делай всё решительно, но аккуратно...",
-                "* Тра-ла-ла, разве ОП дают только за убийства? Тра-ла-ла...",
-                "* Тра-ла-ла, береги пальцы...",
-                "* Тра-ла-ла, следи за комнатой, иначе ты можешь что-то пропустить.",
-                "* Тра-ла-ла, от перенапряжения можно увидеть много интересного...",
-                "* Тра-ла-ла... Да, я знаю, что я часто повторяюсь, тра-ла-ла",
-                "* Тра-ла-ла, никогда не встречал 'e' в больших числах?",
-                "* Тра-ла-ла, а зачем ты работаешь?",
-                "* Тра-ла-ла, почему моя лодка так выглядит? А какая разница, главное, что она работает, тра-ла-ла",
-                "* Тра-ла-ла, почему я текстовый файл? А ты разве нет? Тра-ла-ла..."
+                Translator.Dictionary[TWord.RM_Phrase1],
+                Translator.Dictionary[TWord.RM_Phrase2],
+                Translator.Dictionary[TWord.RM_Phrase3],
+                Translator.Dictionary[TWord.RM_Phrase4],
+                Translator.Dictionary[TWord.RM_Phrase5],
+                Translator.Dictionary[TWord.RM_Phrase6],
+                Translator.Dictionary[TWord.RM_Phrase7],
+                Translator.Dictionary[TWord.RM_Phrase8],
             };
             const string Path = "Boat/RiverPerson.txt";
 
@@ -405,7 +438,7 @@ namespace Sans
             else
             {
                 StreamWriter sw = new(Path);
-                sw.WriteLine("* Тра-ла-ла, зачем тебе это делать?");
+                sw.WriteLine(Translator.Dictionary[TWord.RM_Delete]);
                 sw.Close();
             }
         }
@@ -488,7 +521,7 @@ namespace Sans
             }
             if (Save.save.ResetWas)
             {
-                TimeMachineMenu.Width = menuTabsSize;
+                TimeMachineMenu.Width = menuTabsSize * UIScale;
                 ResetMenu.Width = 0.0;
                 RPcounter.Visibility = Visibility.Visible;
                 Tickcounter.Visibility = Visibility.Visible;
@@ -536,6 +569,7 @@ namespace Sans
             {
                 if (Save.save.RanAway)
                 {
+					LoadUpgrades();
                     Save.save.RanAway = false;
                     ResetButton_Click(new(), new());
                 }
@@ -564,6 +598,17 @@ namespace Sans
                     break;
                 case "_start_tutorial":
                     BeginNewDialog("_start_tutorial1", 1000);
+                    checkZeroThread = new(delegate () {
+               
+                        Thread.Sleep(60000);
+                        DoCmd(delegate () {
+                            if (Save.save.DT < 1)
+                                BeginNewDialog("_i_refuse_badly", 300);
+                            Save.save.NeedToCheck = false;
+                        });
+                    });
+                    checkZeroThread.IsBackground = true;
+                    checkZeroThread.Start();
                     break;
                 case "_start_tutorial2":
                     BeginNewDialog("_start_tutorial3", 1000);
@@ -598,9 +643,43 @@ namespace Sans
                 case "_stat1":
                     break;
                 case "_run_away0":
-                case "_start_tutorial_r":
-                    //musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     SetBGAnimation("MachineBG");
+                    if (Save.save.NeedToCheck)
+                    {
+                        checkZeroThread = new(delegate () {
+                            Thread.Sleep(60000);
+                            DoCmd(delegate () {
+                                if (Save.save.DT < 1)
+                                    BeginNewDialog("_i_refuse_badly", 300);
+                                Save.save.NeedToCheck = false;
+                            });
+                        });
+                        checkZeroThread.IsBackground = true;
+                        checkZeroThread.Start();
+                    }
+                    break;
+                case "_start_tutorial_r":
+                    SetBGAnimation("MachineBG");
+                    checkZeroThread = new(delegate () {
+                        DoCmd(delegate ()
+                        {
+                            Save.save.NeedToCheck = true;
+                            Save.DoSave(LOG);
+                        });
+                        Thread.Sleep(60000);
+                        DoCmd(delegate () {
+                            if (Save.save.DT < 1)
+                                BeginNewDialog("_i_refuse_badly", 300);
+                            Save.save.NeedToCheck = false;
+                        });
+                    });
+                    checkZeroThread.IsBackground = true;
+                    checkZeroThread.Start();
+                    break;
+                case "_i_refuse_badly":
+                    File.Delete("Saves/s0.txt");
+                    deleteSaveFile = true;
+                    Close(false);
                     break;
                 case "_second_machine":
                     BeginNewDialog("_second_machine2", 100);
@@ -729,7 +808,6 @@ namespace Sans
                     BeginNewDialog("_6.6e66_i4", 100);
                     break;
                 case "_6.6e66_i4":
-                    //BeginNewDialog("_6.6e66_i5", 100);
                     break;
                 case "_you_cant":
                     BeginNewDialog("_end_i2", 100);
@@ -761,7 +839,7 @@ namespace Sans
         public void Gaster()
         {
             musicPlayer.BackgroundMusicStop();
-            MessageBox.Show("Будь осторожен", "????", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show(Translator.Dictionary[TWord.CharaWarning], Translator.Dictionary[TWord.She], MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             AmalgametHandler.IsActive = false;
             UltraBlackScreen.Visibility = Visibility.Visible;
@@ -995,7 +1073,7 @@ namespace Sans
                     break;
                 case "_6.6e66_i4":
                     BlackScreen.Visibility = Visibility.Hidden;
-                    Save.save.OpenedUpgrades["Все счастливы"] = UpgradeMode.Opened;
+                    Save.save.OpenedUpgrades[Upgrades.GetName("goodending")] = UpgradeMode.Opened;
                     musicPlayer.StartBackgroundMusic(MusicEnable.im_here);
                     ReloadCurrentUpgradePage();
                     break;
@@ -1121,11 +1199,11 @@ namespace Sans
         {
             Dictionary<string, double> mult = new Dictionary<string, double>()
             {
-                { "Пятый корпус", Save.save.MachineCount[0] },
-                { "Шестой корпус", Save.save.MachineCount[1] },
-                { "Седьмой корпус", Save.save.MachineCount[2] },
-                { "Восьмой корпус", Save.save.MachineCount[3] },
-                { "[Вечное] Последний корпус", dthandler.DTPSValue },
+                { Upgrades.GetName("machine_5"), Save.save.MachineCount[0] },
+                { Upgrades.GetName("machine_6"), Save.save.MachineCount[1] },
+                { Upgrades.GetName("machine_7"), Save.save.MachineCount[2] },
+                { Upgrades.GetName("machine_8"), Save.save.MachineCount[3] },
+                { Upgrades.GetName("lastmachine"), dthandler.DTPSValue },
             };
 
             double ans = DTperClick;
@@ -1147,7 +1225,6 @@ namespace Sans
                 return;
             }
 
-            //Gaster();
             soundPlayer.PlaySound(SoundEnable.vinyl_short);
 
             Save.save.Clicks += Convert.ToInt32(1 * Math.Max(1.0, EXPBoost));
@@ -1308,7 +1385,8 @@ namespace Sans
                 if (LastBuyDelegate != null)
                     BuyUpgradeBubble.Click -= LastBuyDelegate;
                 BuyUpgradeBubble.Click += buyDelegate;
-                BuyUpgradeBubble.Content = $"Купить ({BigNumsConverter.GetInPrettyENotation(upgrade.Price)} реш.)";
+                BuyUpgradeBubble.Content = $"{Translator.Dictionary[TWord.UpgradesBubble_Buy]} " +
+                $"({BigNumsConverter.GetInPrettyENotation(upgrade.Price)} {Translator.Dictionary[TWord.DTPrice]})";
                 LastBuyDelegate = buyDelegate;
             };
 
@@ -1317,7 +1395,7 @@ namespace Sans
             
             buybutton.Style = (Style)this.TryFindResource("UTDTButtonStyle");
             buybutton.FontSize = 30 * UIScale;
-            buybutton.Content = BigNumsConverter.GetInPrettyENotation(upgrade.Price, 1000) + " реш.";
+            buybutton.Content = BigNumsConverter.GetInPrettyENotation(upgrade.Price, 1000) + " " + Translator.Dictionary[TWord.DTPrice];
             buybutton.Click += buyDelegate;
             
             closerbutton.Style = (Style)this.TryFindResource("VinoDTText");
@@ -1429,7 +1507,7 @@ namespace Sans
                     DTperClick = 1.0;
 
                     Save.save.OpenedUpgrades = Save.save.OpenedUpgrades
-                        .Where(p => p.Key.StartsWith("[Вечное]"))
+                        .Where(p => p.Key.StartsWith($"[{Translator.Dictionary[TWord.Eternal]}]"))
                         .ToDictionary(x => x.Key, x => x.Value);
 
                     Save.save.DT = 0.0;
@@ -1543,15 +1621,15 @@ namespace Sans
             {
                 StreamWriter sw = new("stat.txt");
                 sw.WriteLine("+-----------------------+");
-                sw.WriteLine("| Санс                  |");
+                sw.WriteLine("| {0, -4}                  |", Translator.Dictionary[TWord.Stat_Sans]);
                 sw.WriteLine("+-----------------------+");
-                sw.WriteLine("| УР : {0,-6}           |", GetLvlByExp(Save.save.Clicks));
-                sw.WriteLine("| ОЗ : {0,-6}           |", 1);
-                sw.WriteLine("| СИЛ: {0,-6}           |", (Save.save.Strengh > 999999) ? Double.PositiveInfinity : DMG);
-                sw.WriteLine("| ОП : {0,-6}           |", (Save.save.Clicks > 999999) ? Double.PositiveInfinity : Save.save.Clicks);
-                sw.WriteLine("| РЕШ: {0,-7}          |", BigNumsConverter.GetInPrettyENotation(Save.save.TotalDT));
-                sw.WriteLine("| РЗК: {0,-7}          |", BigNumsConverter.GetInPrettyENotation(CountDTPerClick()));
-                sw.WriteLine("| ОС : {0,-7}          |", BigNumsConverter.GetInPrettyENotation(Save.save.RP));
+                sw.WriteLine("| {0, -3}: {1,-6}           |", Translator.Dictionary[TWord.Stat_LV], GetLvlByExp(Save.save.Clicks));
+                sw.WriteLine("| {0, -3}: {1,-6}           |", Translator.Dictionary[TWord.Stat_HP], 1);
+                sw.WriteLine("| {0, -3}: {1,-6}           |", Translator.Dictionary[TWord.Stat_DMG], (Save.save.Strengh > 999999) ? Double.PositiveInfinity : DMG);
+                sw.WriteLine("| {0, -3}: {1,-6}           |", Translator.Dictionary[TWord.Stat_EXP], (Save.save.Clicks > 999999) ? Double.PositiveInfinity : Save.save.Clicks);
+                sw.WriteLine("| {0, -3}: {1,-7}          |", Translator.Dictionary[TWord.Stat_DT], BigNumsConverter.GetInPrettyENotation(Save.save.TotalDT));
+                sw.WriteLine("| {0, -3}: {1,-7}          |", Translator.Dictionary[TWord.Stat_DPC], BigNumsConverter.GetInPrettyENotation(CountDTPerClick()));
+                sw.WriteLine("| {0, -3}: {1,-7}          |", Translator.Dictionary[TWord.Stat_RP], BigNumsConverter.GetInPrettyENotation(Save.save.RP));
                 sw.WriteLine("+-----------------------+");
                 sw.Close();
 
@@ -1673,8 +1751,6 @@ namespace Sans
         {
             soundPlayer.PlaySound(SoundEnable.vinyl_short);
             SettingsBubble.Visibility = Visibility.Visible;
-            //todo back
-            //SetUIScale(UIScale);
             DarkerScreen.Visibility = Visibility.Visible;
         }
 
@@ -1726,10 +1802,10 @@ namespace Sans
         {
             soundPlayer.PlaySound(SoundEnable.short_kick);
             Fullscreen();
-            if (FullscreenButton.Content.ToString() == "выкл")
-                FullscreenButton.Content = "вкл";
+            if (FullscreenButton.Content.ToString() == Translator.Dictionary[TWord.S_Off])
+                FullscreenButton.Content = Translator.Dictionary[TWord.S_On];
             else
-                FullscreenButton.Content = "выкл";
+                FullscreenButton.Content = Translator.Dictionary[TWord.S_Off];
         }
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
@@ -1772,7 +1848,7 @@ namespace Sans
                 e.Cancel = false;
             else
             {
-                var ans = MessageBox.Show("Всё закончится так?", "????", MessageBoxButton.YesNo);
+                var ans = MessageBox.Show(Translator.Dictionary[TWord.DontLeave], Translator.Dictionary[TWord.She], MessageBoxButton.YesNo);
                 if (ans == MessageBoxResult.No)
                     e.Cancel = true;
                 else
@@ -1789,7 +1865,7 @@ namespace Sans
         private void DeleteSaveButton_Click(object sender, RoutedEventArgs e)
         {
             soundPlayer.PlaySound(SoundEnable.vinyl_short);
-            var ans = MessageBox.Show("Удалить сохранение?", "????", MessageBoxButton.YesNo);
+            var ans = MessageBox.Show(Translator.Dictionary[TWord.S_DeleteSaveConfirm], Translator.Dictionary[TWord.She], MessageBoxButton.YesNo);
             if (ans == MessageBoxResult.Yes)
             {
                 deleteSaveFile = true;

@@ -230,7 +230,7 @@ machine_7
 Седьмой корпус
 Ручное вытягивание решимости умножается на кол-во улучшений третьего корпуса
 {"Price":1.11e19,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":16,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
-needle_9
+needle_10
 Тысяча игл
 Для более быстрого ручного вытягивания решимости
 {"Price":1.11e21,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":2,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1}
@@ -392,19 +392,19 @@ breakingtime_3
 {"Price":1e43,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"TimeSpeed":6}
 infinity_1
 [Вечное] Бесконечность 1
-Каждую секунду число решимости растет на 2%
-{"Price":1e25,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":2}
+Каждую секунду число решимости растет на 4%
+{"Price":1e25,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":4}
 infinity_2
 [Вечное] Бесконечность 2
-Каждую секунду число решимости растет ещё на 5%
-{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":5}
+Каждую секунду число решимости растет ещё на 8%
+{"Price":1e35,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":8}
 infinity_3
 [Вечное] Бесконечность 3
-Каждую секунду число решимости растет ещё на 10%
-{"Price":1e50,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":10}
+Каждую секунду число решимости растет ещё на 15%
+{"Price":1e50,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":15}
 goodending
 Все счастливы
-Купи это и все будут счастливы
+Все счастливы
 {"Price":1e241,"MachineUpgrades":[1,1,1,1],"TimeMachineUpgrades":[1,1,1,1],"CursorUpgrade":1,"ExpUpgrade":1,"DamageUpgrade":0,"TimePointsIncomeUpgrade":1,"AddPercentOfDT":0}
 amalg_1
 Усмирение 1

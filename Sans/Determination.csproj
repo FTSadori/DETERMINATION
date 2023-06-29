@@ -157,6 +157,7 @@
     <None Remove="Images\YouCant3.png" />
     <None Remove="Text\dialogs.txt" />
     <None Remove="Text\Manual.txt" />
+    <None Remove="Text\translate.txt" />
     <None Remove="Text\upgrades.txt" />
     <None Remove="Upgrades\u_act_1.png" />
     <None Remove="Upgrades\u_act_2.png" />
@@ -689,6 +690,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Text\Manual.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Text\translate.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Text\upgrades.txt">

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Determination;
 using System.Windows.Threading;
 
 namespace Sans
@@ -35,12 +36,12 @@ namespace Sans
 
             Dictionary<double, string> TimeSpaceUpgradesEvent = new()
             {
-                { 2, "[Вечное] Перемещение во времени и пространстве 1" },
-                { 3, "[Вечное] Перемещение во времени и пространстве 2" },
-                { 4, "[Вечное] Перемещение во времени и пространстве 3" },
-                { 5, "[Вечное] Перемещение во времени и пространстве 4" },
-                { 7, "[Вечное] Перемещение во времени и пространстве 5" },
-                { 10, "[Вечное] Перемещение во времени и пространстве 6" },
+                { 2, Upgrades.GetName("timespace_1") },
+                { 3, Upgrades.GetName("timespace_2") },
+                { 4, Upgrades.GetName("timespace_3") },
+                { 5, Upgrades.GetName("timespace_4") },
+                { 7, Upgrades.GetName("timespace_5") },
+                { 10, Upgrades.GetName("timespace_6") },
             };
 
             foreach (var pair in TimeSpaceUpgradesEvent)
@@ -88,51 +89,51 @@ namespace Sans
                 {
                     new()
                     {
-                        { "Улучшенный I корпус", 6 },
-                        { "Стальной I корпус", 16 },
-                        { "Мощный I корпус", 26 },
-                        { "Титаниевый I корпус", 56 },
-                        { "Прочный I корпус", 86 },
-                        { "Переработанный I корпус", 136 },
-                        { "Межвременной I корпус 1", 206 },
-                        { "Межвременной I корпус 2", 286 },
-                        { "Межвременной I корпус 3", 406 }
+                        { Upgrades.GetName("machine_I1"), 6 },
+                        { Upgrades.GetName("machine_I2"), 16 },
+                        { Upgrades.GetName("machine_I3"), 26 },
+                        { Upgrades.GetName("machine_I4"), 56 },
+                        { Upgrades.GetName("machine_I5"), 86 },
+                        { Upgrades.GetName("machine_I6"), 136 },
+                        { Upgrades.GetName("machine_It1"), 206 },
+                        { Upgrades.GetName("machine_It2"), 286 },
+                        { Upgrades.GetName("machine_It3"), 406 }
                     },
                     new()
                     {
-                        { "Улучшенный II корпус", 6 },
-                        { "Стальной II корпус", 16 },
-                        { "Мощный II корпус", 26 },
-                        { "Титаниевый II корпус", 56 },
-                        { "Прочный II корпус", 86 },
-                        { "Переработанный II корпус", 116 },
-                        { "Межвременной II корпус 1", 166 },
-                        { "Межвременной II корпус 2", 206 },
-                        { "Межвременной II корпус 3", 256 }
+                        { Upgrades.GetName("machine_II1"), 6 },
+                        { Upgrades.GetName("machine_II2"), 16 },
+                        { Upgrades.GetName("machine_II3"), 26 },
+                        { Upgrades.GetName("machine_II4"), 56 },
+                        { Upgrades.GetName("machine_II5"), 86 },
+                        { Upgrades.GetName("machine_II6"), 116 },
+                        { Upgrades.GetName("machine_IIt1"), 166 },
+                        { Upgrades.GetName("machine_IIt2"), 206 },
+                        { Upgrades.GetName("machine_IIt3"), 256 }
                     },
                     new()
                     {
-                        { "Улучшенный III корпус", 6 },
-                        { "Стальной III корпус", 16 },
-                        { "Мощный III корпус", 26 },
-                        { "Титаниевый III корпус", 56 },
-                        { "Прочный III корпус", 76 },
-                        { "Переработанный III корпус", 96 },
-                        { "Межвременной III корпус 1", 116 },
-                        { "Межвременной III корпус 2", 136 },
-                        { "Межвременной III корпус 3", 166 }
+                        { Upgrades.GetName("machine_III1"), 6 },
+                        { Upgrades.GetName("machine_III2"), 16 },
+                        { Upgrades.GetName("machine_III3"), 26 },
+                        { Upgrades.GetName("machine_III4"), 56 },
+                        { Upgrades.GetName("machine_III5"), 76 },
+                        { Upgrades.GetName("machine_III6"), 96 },
+                        { Upgrades.GetName("machine_IIIt1"), 116 },
+                        { Upgrades.GetName("machine_IIIt2"), 136 },
+                        { Upgrades.GetName("machine_IIIt3"), 166 }
                     },
                     new()
                     {
-                        { "Улучшенный IV корпус", 6 },
-                        { "Стальной IV корпус", 16 },
-                        { "Мощный IV корпус", 26 },
-                        { "Титаниевый IV корпус", 36 },
-                        { "Прочный IV корпус", 46 },
-                        { "Переработанный IV корпус", 56 },
-                        { "Межвременной IV корпус 1", 66 },
-                        { "Межвременной IV корпус 2", 86 },
-                        { "Межвременной IV корпус 3", 106 }
+                        { Upgrades.GetName("machine_IV1"), 6 },
+                        { Upgrades.GetName("machine_IV2"), 16 },
+                        { Upgrades.GetName("machine_IV3"), 26 },
+                        { Upgrades.GetName("machine_IV4"), 36 },
+                        { Upgrades.GetName("machine_IV5"), 46 },
+                        { Upgrades.GetName("machine_IV6"), 56 },
+                        { Upgrades.GetName("machine_IVt1"), 66 },
+                        { Upgrades.GetName("machine_IVt2"), 86 },
+                        { Upgrades.GetName("machine_IVt3"), 106 }
                     }
                 };
                 
@@ -140,39 +141,39 @@ namespace Sans
                 {
                     new()
                     {
-                        { "[Вечное] Улучшенный I корпус времени 1", 1 },
-                        { "[Вечное] Улучшенный I корпус времени 2", 6 },
-                        { "[Вечное] Улучшенный I корпус времени 3", 12 },
-                        { "[Вечное] Улучшенный I корпус времени 4", 18 },
-                        { "[Вечное] Улучшенный I корпус времени 5", 24 },
-                        { "[Вечное] Улучшенный I корпус времени 6", 30 },
+                        { Upgrades.GetName("timemachine_I1"), 1 },
+                        { Upgrades.GetName("timemachine_I2"), 6 },
+                        { Upgrades.GetName("timemachine_I3"), 12 },
+                        { Upgrades.GetName("timemachine_I4"), 18 },
+                        { Upgrades.GetName("timemachine_I5"), 24 },
+                        { Upgrades.GetName("timemachine_I6"), 30 },
                     },
                     new()
                     {
-                        { "[Вечное] Улучшенный II корпус времени 1", 1 },
-                        { "[Вечное] Улучшенный II корпус времени 2", 4 },
-                        { "[Вечное] Улучшенный II корпус времени 3", 7 },
-                        { "[Вечное] Улучшенный II корпус времени 4", 10 },
-                        { "[Вечное] Улучшенный II корпус времени 5", 13 },
-                        { "[Вечное] Улучшенный II корпус времени 6", 16 },
+                        { Upgrades.GetName("timemachine_II1"), 1 },
+                        { Upgrades.GetName("timemachine_II2"), 4 },
+                        { Upgrades.GetName("timemachine_II3"), 7 },
+                        { Upgrades.GetName("timemachine_II4"), 10 },
+                        { Upgrades.GetName("timemachine_II5"), 13 },
+                        { Upgrades.GetName("timemachine_II6"), 16 },
                     },
                     new()
                     {
-                        { "[Вечное] Улучшенный III корпус времени 1", 1 },
-                        { "[Вечное] Улучшенный III корпус времени 2", 2 },
-                        { "[Вечное] Улучшенный III корпус времени 3", 4 },
-                        { "[Вечное] Улучшенный III корпус времени 4", 6 },
-                        { "[Вечное] Улучшенный III корпус времени 5", 8 },
-                        { "[Вечное] Улучшенный III корпус времени 6", 10 },
+                        { Upgrades.GetName("timemachine_III1"), 1 },
+                        { Upgrades.GetName("timemachine_III2"), 2 },
+                        { Upgrades.GetName("timemachine_III3"), 4 },
+                        { Upgrades.GetName("timemachine_III4"), 6 },
+                        { Upgrades.GetName("timemachine_III5"), 8 },
+                        { Upgrades.GetName("timemachine_III6"), 10 },
                     },
                     new()
                     {
-                        { "[Вечное] Улучшенный IV корпус времени 1", 1 },
-                        { "[Вечное] Улучшенный IV корпус времени 2", 2 },
-                        { "[Вечное] Улучшенный IV корпус времени 3", 3 },
-                        { "[Вечное] Улучшенный IV корпус времени 4", 4 },
-                        { "[Вечное] Улучшенный IV корпус времени 5", 5 },
-                        { "[Вечное] Улучшенный IV корпус времени 6", 6 },
+                        { Upgrades.GetName("timemachine_IV1"), 1 },
+                        { Upgrades.GetName("timemachine_IV2"), 2 },
+                        { Upgrades.GetName("timemachine_IV3"), 3 },
+                        { Upgrades.GetName("timemachine_IV4"), 4 },
+                        { Upgrades.GetName("timemachine_IV5"), 5 },
+                        { Upgrades.GetName("timemachine_IV6"), 6 },
                     }
                 };
                 
@@ -192,13 +193,13 @@ namespace Sans
                                     Save.save.OpenedUpgrades[p.Key] = UpgradeMode.Opened;
                                     MainWindow.This?.ReloadCurrentUpgradePage();
 
-                                    if (p.Key == "Межвременной I корпус 3")
+                                    if (p.Key == Upgrades.GetName("machine_It3"))
                                     { MainWindow.This.Machine1Name.Foreground = Brushes.Yellow; Save.save.MachinesFull[0] = true; }
-                                    if (p.Key == "Межвременной II корпус 3")
+                                    if (p.Key == Upgrades.GetName("machine_IIt3"))
                                     { MainWindow.This.Machine2Name.Foreground = Brushes.Yellow; Save.save.MachinesFull[1] = true; }
-                                    if (p.Key == "Межвременной III корпус 3")
+                                    if (p.Key == Upgrades.GetName("machine_IIIt3"))
                                     { MainWindow.This.Machine3Name.Foreground = Brushes.Yellow; Save.save.MachinesFull[2] = true; }
-                                    if (p.Key == "Межвременной IV корпус 3")
+                                    if (p.Key == Upgrades.GetName("machine_IVt3"))
                                     { MainWindow.This.Machine4Name.Foreground = Brushes.Yellow; Save.save.MachinesFull[3] = true; }
                                 }
                             });
@@ -213,13 +214,13 @@ namespace Sans
                                     Save.save.OpenedUpgrades[p.Key] = UpgradeMode.Opened;
                                     MainWindow.This?.ReloadCurrentUpgradePage();
 
-                                    if (p.Key == "[Вечное] Улучшенный I корпус времени 6")
+                                    if (p.Key == Upgrades.GetName("timemachine_I6"))
                                     { MainWindow.This.TimeMachine1Name.Foreground = Brushes.DarkOrange; Save.save.TimeMachinesFull[0] = true; }
-                                    if (p.Key == "[Вечное] Улучшенный II корпус времени 6")
+                                    if (p.Key == Upgrades.GetName("timemachine_II6"))
                                     { MainWindow.This.TimeMachine2Name.Foreground = Brushes.DarkOrange; Save.save.TimeMachinesFull[1] = true; }
-                                    if (p.Key == "[Вечное] Улучшенный III корпус времени 6")
+                                    if (p.Key == Upgrades.GetName("timemachine_III6"))
                                     { MainWindow.This.TimeMachine3Name.Foreground = Brushes.DarkOrange; Save.save.TimeMachinesFull[2] = true; }
-                                    if (p.Key == "[Вечное] Улучшенный IV корпус времени 6")
+                                    if (p.Key == Upgrades.GetName("timemachine_IV6"))
                                     { MainWindow.This.TimeMachine4Name.Foreground = Brushes.DarkOrange; Save.save.TimeMachinesFull[3] = true; }
                                 }
                             });
@@ -235,25 +236,25 @@ namespace Sans
             while (DoCheck)
             {
                 Dictionary<string, double> OpenUpgradesEvent = new() { 
-                    { "Вторая игла", 10 }, //2
-                    { "Четвертая игла", 30 }, //3
-                    { "Повышенное давление", 70 }, //4
-                    { "Восьмая игла", 120 }, //5
-                    { "Повышенное давление 2", 200 }, //6
-                    { "16 игл", 300 }, //7
-                    { "32 иглы", 500 }, //8
-                    { "Повышенное давление 3", 800 }, //9
-                    { "Пятый корпус", 1200 }, //10
-                    { "64 иглы", 1700 }, //11
-                    { "128 иглы", 2500 }, //12
-                    { "Шестой корпус", 3500 }, //13
-                    { "Повышенное давление 4", 5000 }, //14
-                    { "256 иглы", 7000 }, //15
-                    { "512 иглы", 10000 }, //16
-                    { "Седьмой корпус", 15000 }, //17
-                    { "Тысяча игл", 25000 }, //18
-                    { "Повышенное давление 5", 50000 }, //19
-                    { "Восьмой корпус", 99999 }, //20
+                    { Upgrades.GetName("needle_1"), 10 }, //2
+                    { Upgrades.GetName("needle_2"), 30 }, //3
+                    { Upgrades.GetName("press_1"), 70 }, //4
+                    { Upgrades.GetName("needle_3"), 120 }, //5
+                    { Upgrades.GetName("press_2"), 200 }, //6
+                    { Upgrades.GetName("needle_4"), 300 }, //7
+                    { Upgrades.GetName("needle_5"), 500 }, //8
+                    { Upgrades.GetName("press_3"), 800 }, //9
+                    { Upgrades.GetName("machine_5"), 1200 }, //10
+                    { Upgrades.GetName("needle_6"), 1700 }, //11
+                    { Upgrades.GetName("needle_7"), 2500 }, //12
+                    { Upgrades.GetName("machine_6"), 3500 }, //13
+                    { Upgrades.GetName("press_4"), 5000 }, //14
+                    { Upgrades.GetName("needle_8"), 7000 }, //15
+                    { Upgrades.GetName("needle_9"), 10000 }, //16
+                    { Upgrades.GetName("machine_7"), 15000 }, //17
+                    { Upgrades.GetName("needle_10"), 25000 }, //18
+                    { Upgrades.GetName("press_5"), 50000 }, //19
+                    { Upgrades.GetName("machine_8"), 99999 }, //20
                 };
 
                 while (true)
@@ -288,7 +289,7 @@ namespace Sans
                                 Save.save.End = Endings.Neutral;
                             else if (Save.save.MaxClicks >= 99999)
                             {
-                                Save.save.OpenedUpgrades["[Вечное] Последний корпус"] = UpgradeMode.Opened;
+                                Save.save.OpenedUpgrades[Upgrades.GetName("lastmachine")] = UpgradeMode.Opened;
                                 Save.save.TryAddPages(new List<int>() { 18, 19 });
                                 MainWindow.This.SetHallAnimation(3);
                                 Save.save.InsaneLevel = 4;
@@ -314,7 +315,7 @@ namespace Sans
                             {
                                 if (!Save.save.OpenedUpgrades.ContainsKey(p.Key))
                                 {
-                                    if (p.Key == "Пятый корпус")
+                                    if (p.Key == Upgrades.GetName("machine_5"))
                                     {
                                         Save.save.TryAddPages(new List<int>() { 14, 15 });
                                     }
@@ -348,40 +349,40 @@ namespace Sans
                 List<double> TabOpenEvent = new() { 1e6 };
                 Dictionary<string, double> OpenUpgradesEventKiller = new()
                 {
-                    { "Сила 1", 1e30 },
-                    { "Сила 2", 1e35 },
+                    { Upgrades.GetName("knife_1"), 1e30 },
+                    { Upgrades.GetName("knife_2"), 1e35 },
                 };
                 Dictionary<string, double> OpenUpgradesEventSave = new()
                 {
-                    { "Действие 1", 1e28 },
-                    { "Действие 2", 1e34 },
-                    { "Действие 3", 1e38 },
+                    { Upgrades.GetName("act_1"), 1e28 },
+                    { Upgrades.GetName("act_2"), 1e34 },
+                    { Upgrades.GetName("act_3"), 1e38 },
                 };
                 Dictionary<string, double> OpenUpgradesEventNeutral = new()
                 {
-                    { "[Вечное] Бесконечность 1", 1e25 },
-                    { "[Вечное] Бесконечность 2", 1e35 },
-                    { "[Вечное] Бесконечность 3", 1e50 },
+                    { Upgrades.GetName("infinity_1"), 1e25 },
+                    { Upgrades.GetName("infinity_2"), 1e35 },
+                    { Upgrades.GetName("infinity_3"), 1e50 },
                 };
                 Dictionary<string, double> OpenUpgradesEvent = new()
                 {
-                    { "Повышенная мощность корпусов 1", 256 },
-                    { "Повышенная мощность корпусов 2", 2.56e3 },
-                    { "Повышенная мощность корпусов 3", 2.56e5 },
-                    { "Повышенная мощность корпусов 4", 2.56e8 },
-                    { "Повышенная мощность корпусов 5", 2.56e15 },
-                    { "Повышенная мощность корпусов 6", 2.56e25 },
-                    { "Усмирение 1", 1e7 },
-                    { "Усмирение 2", 1e17 },
-                    { "Усмирение 3", 1e27 },
-                    { "Усмирение 4", 1e37 },
-                    { "Усмирение 5", 1e47 },
-                    { "[Вечное] Искривление пространства 1", 1e13 },
-                    { "[Вечное] Искривление пространства 2", 1e23 },
-                    { "[Вечное] Искривление пространства 3", 1e33 },
-                    { "[Вечное] Разлом времени 1", 1e33 },
-                    { "[Вечное] Разлом времени 2", 1e39 },
-                    { "[Вечное] Разлом времени 3", 1e43 },
+                    { Upgrades.GetName("machine_A1"), 256 },
+                    { Upgrades.GetName("machine_A2"), 2.56e3 },
+                    { Upgrades.GetName("machine_A3"), 2.56e5 },
+                    { Upgrades.GetName("machine_A4"), 2.56e8 },
+                    { Upgrades.GetName("machine_A5"), 2.56e15 },
+                    { Upgrades.GetName("machine_A6"), 2.56e25 },
+                    { Upgrades.GetName("amalg_1"), 1e7 },
+                    { Upgrades.GetName("amalg_2"), 1e17 },
+                    { Upgrades.GetName("amalg_3"), 1e27 },
+                    { Upgrades.GetName("amalg_4"), 1e37 },
+                    { Upgrades.GetName("amalg_5"), 1e47 },
+                    { Upgrades.GetName("machine_A1E"), 1e13 },
+                    { Upgrades.GetName("machine_A2E"), 1e23 },
+                    { Upgrades.GetName("machine_A3E"), 1e33 },
+                    { Upgrades.GetName("breakingtime_1"), 1e33 },
+                    { Upgrades.GetName("breakingtime_2"), 1e39 },
+                    { Upgrades.GetName("breakingtime_3"), 1e43 },
                 };
 
                 while (true)
@@ -517,7 +518,7 @@ namespace Sans
             Save.save.DT += num;
             Save.save.DT = Math.Max(0, Save.save.DT);
             Save.save.TotalDT += Math.Max(0, num);
-            DTCounter.Text = BigNumsConverter.GetInPrettyENotation(Save.save.DT) + " Решимости";
+            DTCounter.Text = BigNumsConverter.GetInPrettyENotation(Save.save.DT) + $" {Translator.Dictionary[TWord.C_Determination]}";
             MainWindow.rphandler?.ReloadPRGainCounter();
         }
 
@@ -532,7 +533,7 @@ namespace Sans
             }
             dtps *= 1.0 + Save.save.TimeMachinePowers[0];
 
-            DTPSCounter.Text = BigNumsConverter.GetInPrettyENotation(dtps) + " Решимости в секунду";
+            DTPSCounter.Text = BigNumsConverter.GetInPrettyENotation(dtps) + $" {Translator.Dictionary[TWord.C_DTPerSecond]}";
             DTPSValue = dtps;
         }
 
@@ -558,14 +559,14 @@ namespace Sans
         {
             Save.save.RP += num;
             Save.save.RP = Math.Max(Save.save.RP, 0.0);
-            RPCounter.Text = BigNumsConverter.GetInPrettyENotation(Save.save.RP) + " Очков сброса";
+            RPCounter.Text = BigNumsConverter.GetInPrettyENotation(Save.save.RP) + $" {Translator.Dictionary[TWord.C_ResetPoints]}";
         }
 
         public void ReloadPRGainCounter()
         {
             RPGainCounter.Text = "+ " +
                 BigNumsConverter.GetInPrettyENotation(Math.Max(RPGainOnReset = CalculateResetPoints(Save.save.TotalDT + 1), 0.0))
-                + " ОС";
+                + $" {Translator.Dictionary[TWord.RPPrice]}";
         }
 
         static public bool IfEnough(double price) => (Math.Round(Save.save.RP) >= Math.Round(price));
@@ -610,7 +611,7 @@ namespace Sans
 
         public void ReloadCounter()
         {
-            TickCounter.Text = BigNumsConverter.GetInPrettyENotation(1.0 + Save.save.TimeMachinePowers[0] * MainWindow.machinesHandler.TimeMachines[0].Multipicator) + " Тиков в секунду";
+            TickCounter.Text = BigNumsConverter.GetInPrettyENotation(1.0 + Save.save.TimeMachinePowers[0] * MainWindow.machinesHandler.TimeMachines[0].Multipicator) + $" {Translator.Dictionary[TWord.C_TicksPerSecond]}";
         }
     }
 }
